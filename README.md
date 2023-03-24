@@ -8,18 +8,17 @@ a. Contexto de familiaridade: Sistema de Gerenciamento de Escola.
 
 b. Usando os conceitos de orientação a objetos, podemos modelar a aplicação com os seguintes conceitos:
 
-    Encapsulamento: oculta a complexidade e os detalhes de implementação dos objetos, protegendo seus atributos e comportamentos.
+    Encapsulamento;
 		
-    Abstração: permite que os objetos sejam modelados com base em suas características mais importantes e relevantes, ignorando 
-	os detalhes menos relevantes.
+    Abstração;
 		
-    Polimorfismo: permite que objetos de diferentes classes possam ser tratados de forma semelhante, utilizando interfaces comuns.
+    Polimorfismo;
+    
+    Herança;
 		
-    Herança: permite que classes mais especializadas herdem atributos e comportamentos de classes mais genéricas.
+    Troca de mensagens;
 		
-    Troca de mensagens: os objetos se comunicam entre si por meio de mensagens, solicitando serviços ou informações uns dos outros.
-		
-    Sobrecarga: é possível ter métodos com o mesmo nome, mas com parâmetros diferentes.
+    Sobrecarga;
 
 c. Documentação: A documentação do sistema pode ser elaborada em formato de diagramas UML, descrição de classes e métodos, e comentários no código fonte.
 
