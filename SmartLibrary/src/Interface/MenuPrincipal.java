@@ -3,10 +3,12 @@ package Interface;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JPasswordField;
 
 public class MenuPrincipal {
 
 	private JFrame frame;
+	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -38,6 +40,10 @@ public class MenuPrincipal {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		passwordField = new JPasswordField();
+		passwordField.setBounds(166, 93, 140, 20);
+		frame.getContentPane().add(passwordField);
 	}
-
 }
