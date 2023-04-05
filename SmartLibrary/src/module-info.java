@@ -6,4 +6,5 @@
  *
  */
 module SmartLibrary {
+	requires java.desktop;
 }
