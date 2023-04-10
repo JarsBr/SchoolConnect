@@ -1,4 +1,4 @@
-# SmartLibrary
+# School Connect
 
 Gerenciamento de Escola
 
