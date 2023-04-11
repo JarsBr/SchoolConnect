@@ -1,4 +1,4 @@
-package Interface;
+package br.com.schoolconnect.projeto.view;
 
 import java.awt.EventQueue;
 
