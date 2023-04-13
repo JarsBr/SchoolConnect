@@ -1,4 +1,4 @@
-package Mains;
+package br.com.schoolconnect.projeto.mains;
 
 import br.com.schoolconnect.projeto.model.Aluno;
 

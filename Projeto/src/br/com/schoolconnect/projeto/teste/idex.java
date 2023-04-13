@@ -1,4 +1,4 @@
-package Teste;
+package br.com.schoolconnect.projeto.teste;
 
 import java.awt.EventQueue;
 
