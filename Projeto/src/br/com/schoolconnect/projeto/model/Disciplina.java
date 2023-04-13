@@ -1,5 +1,10 @@
 package br.com.schoolconnect.projeto.model;
 
+/**
+ * Classe que cria uma disciplina para ser cadastrada em uma turma, ate o momento nao e possivel ter a mesma disciplina em 
+ * mais de um turma.
+ * @author Jars
+ */
 public class Disciplina {
 	private String nome;
 	private int cargaHoraria;

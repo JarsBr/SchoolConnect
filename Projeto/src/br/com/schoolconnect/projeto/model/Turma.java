@@ -2,6 +2,11 @@ package br.com.schoolconnect.projeto.model;
 
 import java.util.ArrayList;
 
+/**
+ * Classe que cria uma turma, uma turma vai ter varias disciplinas e sera posivel cadastrar disciplinas depois
+ * da classe ja ser criada.
+ * @author Jars
+ */
 public class Turma {
 	ArrayList<Disciplina> disciplinaTurma = new ArrayList<Disciplina>();
 	private int idTurma;
@@ -31,7 +36,7 @@ public class Turma {
 		this.numero = numero;
 		QuantAluno = quantAluno;
 	}
-	public void cadastrarDisciplinaTurma() {
+	public void cadastrarDisciplinaTurma() {//METODO QUE CADASTRA A DISCIPLINA NA TURMA
 		String nome = "disciplina01", conteudo = "conteudo";
 		int carga = 123, periodo = 1;
 		disciplinaTurma.add(new Disciplina(nome, carga, periodo, conteudo));
@@ -39,7 +44,7 @@ public class Turma {
 		disciplinaTurma.add(new Disciplina(nome, carga, periodo, conteudo));
 		disciplinaTurma.add(new Disciplina(nome, carga, periodo, conteudo));
 	}
-	public void mostrarDisciplinaTurma() {
+	public void mostrarDisciplinaTurma() {//METODO QUE MOSTRAS TODAS AS DISCIPLINAS DE UM TURMA
 		for(Disciplina p: disciplinaTurma) {
 			System.out.println(p.getNome() + "" + p.getCargaHoraria());
 		}
