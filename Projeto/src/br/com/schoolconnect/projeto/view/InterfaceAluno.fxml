@@ -17,17 +17,17 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.MenuPrincipal">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.schoolconnect.projeto.controller.ControllerInterfaceAluno">
    <children>
       <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <Pane fx:id="panel" onDragDetected="#panel" prefHeight="400.0" prefWidth="640.0" style="-fx-background-color: #2C3333;">
+            <Pane fx:id="panel" prefHeight="400.0" prefWidth="640.0" style="-fx-background-color: #2C3333;">
                <children>
                   <AmbientLight color="CHARTREUSE" layoutX="98.0" layoutY="78.0" lightOn="true" />
                   <PointLight color="CHARTREUSE" layoutX="98.0" layoutY="69.0" lightOn="true" />
                   <AmbientLight color="CHARTREUSE" layoutX="14.0" layoutY="25.0" lightOn="true" />
-                  <Button fx:id="create" layoutX="442.0" layoutY="17.0" mnemonicParsing="false" onAction="#iniciar" prefHeight="34.0" prefWidth="125.0" style="-fx-background-color: #3FB553;" text="Sign out" />
-                  <ImageView fx:id="config" fitHeight="42.0" fitWidth="39.0" layoutX="587.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="iniciar" layoutX="442.0" layoutY="17.0" mnemonicParsing="false" onAction="#iniciar" prefHeight="34.0" prefWidth="125.0" style="-fx-background-color: #3FB553;" text="Sign out" />
+                  <ImageView fx:id="config" fitHeight="42.0" fitWidth="39.0" layoutX="587.0" layoutY="14.0" onMouseClicked="#nununud0s" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@img/iconconfiguration.png" />
                      </image>
