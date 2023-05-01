@@ -7,18 +7,23 @@ import javafx.scene.image.ImageView;
 
 public class ControllerMenuPrincipal {
 
-	@FXML
-	private ImageView config;
+    @FXML
+    private ImageView config;
 
-	@FXML
-	private Button create;
+    @FXML
+    private Button create;
 
-	@FXML
-	private Button login;
+    @FXML
+    private Button login;
 
-	@FXML
-	void iniciar(ActionEvent event) {
-		System.out.println("Teste tela principal");
-	}
+    @FXML
+    void button_login(ActionEvent event) {
+System.out.println("Botao de Login");
+    }
+
+    @FXML
+    void button_register(ActionEvent event) {
+System.out.println("Botao de Cadastro");
+    }
 
 }

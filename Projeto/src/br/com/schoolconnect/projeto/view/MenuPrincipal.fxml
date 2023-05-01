@@ -32,8 +32,8 @@
                     </Label>
                      </children>
                   </Pane>
-                  <Button fx:id="login" layoutX="467.0" layoutY="331.0" mnemonicParsing="false" onAction="#iniciar" prefHeight="34.0" prefWidth="125.0" style="-fx-background-color: #3FB553;" text="Login" />
-                  <Button fx:id="create" layoutX="320.0" layoutY="331.0" mnemonicParsing="false" onAction="#iniciar" prefHeight="34.0" prefWidth="125.0" style="-fx-background-color: #3FB553;" text="Create Account" />
+                  <Button fx:id="login" layoutX="467.0" layoutY="331.0" mnemonicParsing="false" onAction="#button_login" prefHeight="34.0" prefWidth="125.0" style="-fx-background-color: #3FB553;" text="Login" />
+                  <Button fx:id="create" layoutX="310.0" layoutY="331.0" mnemonicParsing="false" onAction="#button_register" prefHeight="34.0" prefWidth="125.0" style="-fx-background-color: #3FB553;" text="Create Account" />
                   <ImageView fx:id="config" fitHeight="42.0" fitWidth="39.0" layoutX="587.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@img/iconconfiguration.png" />
