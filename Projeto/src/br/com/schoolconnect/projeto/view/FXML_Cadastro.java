@@ -8,7 +8,9 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
-public class FXML_InterfaceProfessor extends Application {
+
+public class FXML_Cadastro extends Application{
+	
 	private static Stage stage;
 	public static Scene scene;
 	
@@ -17,11 +19,11 @@ public class FXML_InterfaceProfessor extends Application {
 		
 		stage.setResizable(false);
 
-		Parent painel = FXMLLoader.load(getClass().getResource("InterfaceProfessor.fxml"));
+		Parent painel = FXMLLoader.load(getClass().getResource("Cadastro.fxml"));
 		scene = new Scene(painel);
 
-		stage.setTitle("Tela Professor");
-		stage.getIcons().add(new Image(FXML_InterfaceProfessor.class.getResourceAsStream( "img/symbolimage.png" ))); 
+		stage.setTitle("Tela Aluno");
+		stage.getIcons().add(new Image(FXML_Cadastro.class.getResourceAsStream( "img/symbolimage.png" ))); 
 
 		stage.show();
 
@@ -49,7 +51,7 @@ public class FXML_InterfaceProfessor extends Application {
 	}
 
 	public static void setScene(Scene scene) {
-		FXML_InterfaceProfessor.scene = scene;
+		FXML_Cadastro.scene = scene;
 	}
 
 }

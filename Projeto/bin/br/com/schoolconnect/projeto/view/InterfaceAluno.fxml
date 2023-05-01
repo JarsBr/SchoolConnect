@@ -9,6 +9,7 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -25,33 +26,37 @@
                   <AmbientLight color="CHARTREUSE" layoutX="98.0" layoutY="78.0" lightOn="true" />
                   <PointLight color="CHARTREUSE" layoutX="98.0" layoutY="69.0" lightOn="true" />
                   <AmbientLight color="CHARTREUSE" layoutX="14.0" layoutY="25.0" lightOn="true" />
-                  <Button fx:id="iniciar" layoutX="501.0" layoutY="17.0" mnemonicParsing="false" onAction="#iniciar" prefHeight="34.0" prefWidth="125.0" style="-fx-background-color: #3FB553;" text="Sign out" />
+                  <Button fx:id="iniciar" layoutX="501.0" layoutY="17.0" mnemonicParsing="false" onAction="#iniciar" prefHeight="34.0" prefWidth="125.0" style="-fx-background-radius: 20; -fx-background-color: #3FB553;" text="SAIR" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Dubai Bold" size="13.0" />
+                     </font>
+                  </Button>
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="71.0" layoutY="-22.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fitHeight="272.0" fitWidth="237.0" layoutY="-85.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@img/logowhite.png" />
                      </image>
                   </ImageView>
-                  <TabPane layoutX="23.0" layoutY="109.0" prefHeight="272.0" prefWidth="419.0" tabClosingPolicy="UNAVAILABLE">
-                    <tabs>
-                      <Tab text="Dados">
-                        <content>
+                  <TabPane layoutX="23.0" layoutY="109.0" pickOnBounds="false" prefHeight="272.0" prefWidth="419.0" tabClosingPolicy="UNAVAILABLE">
+                     <tabs>
+                        <Tab text="Dados">
+                           <content>
                               <ScrollPane prefHeight="224.0" prefWidth="431.0">
                                  <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                                  </content>
                               </ScrollPane>
-                        </content>
-                      </Tab>
-                      <Tab text="Horário">
-                        <content>
+                           </content>
+                        </Tab>
+                        <Tab text="Horário">
+                           <content>
                               <ScrollPane>
                                  <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                                  </content>
                               </ScrollPane>
-                        </content>
-                      </Tab>
+                           </content>
+                        </Tab>
                         <Tab text="Materias">
                            <content>
                               <ScrollPane>
@@ -97,21 +102,24 @@
                               </ScrollPane>
                            </content>
                         </Tab>
-                    </tabs>
+                     </tabs>
                   </TabPane>
                   <TitledPane animated="false" layoutX="459.0" layoutY="109.0" prefHeight="272.0" prefWidth="167.0" text="Calendário">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
                               <DatePicker layoutX="-4.0" prefHeight="249.0" prefWidth="174.0" />
                            </children>
                         </AnchorPane>
-                    </content>
+                     </content>
                   </TitledPane>
                   <Label layoutX="244.0" layoutY="46.0" text="Ambiente Aluno" textFill="WHITE">
                      <font>
                         <Font size="30.0" />
                      </font>
+                     <effect>
+                        <Bloom />
+                     </effect>
                   </Label>
                </children>
             </Pane>

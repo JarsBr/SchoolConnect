@@ -8,15 +8,14 @@ import javafx.scene.layout.Pane;
 public class ControllerInterfaceAluno {
 
     @FXML
-    private Button iniciar;
-
-    @FXML
     private Pane panel;
 
     @FXML
-    void iniciar(ActionEvent event) {
+    private Button sair;
+
+    @FXML
+    void button_sair(ActionEvent event) {
 
     }
 
 }
-

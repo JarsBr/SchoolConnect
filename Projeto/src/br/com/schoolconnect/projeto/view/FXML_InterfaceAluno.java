@@ -23,7 +23,7 @@ public class FXML_InterfaceAluno extends Application{
 		scene = new Scene(painel);
 
 		stage.setTitle("Tela Aluno");
-		stage.getIcons().add(new Image(FXML_InterfaceAluno.class.getResourceAsStream( "img/logofullhd.png" ))); 
+		stage.getIcons().add(new Image(FXML_InterfaceAluno.class.getResourceAsStream( "img/symbolimage.png" ))); 
 
 		stage.show();
 

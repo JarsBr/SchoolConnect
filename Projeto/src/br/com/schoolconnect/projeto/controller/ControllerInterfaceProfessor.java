@@ -3,22 +3,19 @@ package br.com.schoolconnect.projeto.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 
 public class ControllerInterfaceProfessor {
 
-	@FXML
-	private ImageView config;
+    @FXML
+    private Pane panel;
 
-	@FXML
-	private Button create;
+    @FXML
+    private Button sair;
 
-	@FXML
-	void iniciar(ActionEvent event) {
-		System.out.println("Iniciar tela professor");
-	}
+    @FXML
+    void button_sair(ActionEvent event) {
+
+    }
 
 }
-
-
-
