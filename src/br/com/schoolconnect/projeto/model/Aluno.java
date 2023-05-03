@@ -29,7 +29,7 @@ public class Aluno extends Pessoa{
 	public void setPeriodoAtual(int periodoAtual) {
 		this.periodoAtual = periodoAtual;
 	}
-	public Aluno(int matricula, String nome, int idade, int cpf, String telefone, String email, String curso,
+	public Aluno(int matricula, String nome, int idade, String cpf, String telefone, String email, String curso,
 			String matriz, int totalPeriodo, int periodoAtual) {
 		super(matricula, nome, idade, cpf, telefone, email);
 		this.curso = curso;

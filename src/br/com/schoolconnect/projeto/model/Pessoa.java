@@ -8,7 +8,7 @@ public class Pessoa {
 	private int matricula;
 	private String nome;
 	private int idade;
-	private int cpf;
+	private String cpf;
 	private String telefone;
 	private String email;
 	public int getMatricula() {
@@ -29,10 +29,10 @@ public class Pessoa {
 	public void setIdade(int idade) {
 		this.idade = idade;
 	}
-	public int getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
-	public void setCpf(int cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 	public String getTelefone() {
@@ -47,7 +47,7 @@ public class Pessoa {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Pessoa(int matricula, String nome, int idade, int cpf, String telefone, String email) {
+	public Pessoa(int matricula, String nome, int idade, String cpf, String telefone, String email) {
 		super();
 		this.matricula = matricula;
 		this.nome = nome;

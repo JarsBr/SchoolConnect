@@ -6,6 +6,7 @@ package br.com.schoolconnect.projeto.model;
  * @author Jars
  */
 public class Disciplina {
+	private int idDisciplina;
 	private String nome;
 	private int cargaHoraria;
 	private int periodo;
