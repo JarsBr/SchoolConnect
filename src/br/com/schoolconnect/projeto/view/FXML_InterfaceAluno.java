@@ -17,7 +17,7 @@ public class FXML_InterfaceAluno extends Application{
 	public void start(Stage t) throws Exception  {
 		stage = new Stage();
 		
-		stage.setResizable(false);
+		stage.setResizable(true);
 
 		Parent painel = FXMLLoader.load(getClass().getResource("InterfaceAluno.fxml"));
 		scene = new Scene(painel);

@@ -15,7 +15,7 @@ public class FXML_InterfaceProfessor extends Application {
 	public void start(Stage t) throws Exception  {
 		stage = new Stage();
 		
-		stage.setResizable(false);
+		stage.setResizable(true);
 
 		Parent painel = FXMLLoader.load(getClass().getResource("InterfaceProfessor.fxml"));
 		scene = new Scene(painel);

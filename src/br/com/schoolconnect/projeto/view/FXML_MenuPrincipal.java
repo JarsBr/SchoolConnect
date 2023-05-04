@@ -26,7 +26,7 @@ public class FXML_MenuPrincipal  extends Application{
 
 		stage.setTitle("Menu");
 	    stage.getIcons().add(new Image(FXML_MenuPrincipal.class.getResourceAsStream( "img/symbolimage.png" ))); 
-
+	 
 		stage.show();
 
 		stage.setScene(scene);

@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.AmbientLight?>
-<?import javafx.scene.PointLight?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -20,14 +18,11 @@
    <children>
       <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
-            <Pane fx:id="panel" focusTraversable="true" prefHeight="400.0" prefWidth="640.0" style="-fx-background-color: #2C3333;">
+            <Pane fx:id="panel" focusTraversable="true" prefHeight="400.0" prefWidth="640.0" style="-fx-background-color: #2C3333; -fx-border-color: #222626; -fx-border-width: 3px;">
                <children>
-                  <AmbientLight color="CHARTREUSE" layoutX="98.0" layoutY="78.0" lightOn="true" />
-                  <PointLight color="CHARTREUSE" layoutX="98.0" layoutY="69.0" lightOn="true" />
-                  <AmbientLight color="CHARTREUSE" layoutX="14.0" layoutY="25.0" lightOn="true" />
                   <Button fx:id="cadastrar" layoutX="258.0" layoutY="341.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="34.0" prefWidth="125.0" style="-fx-background-radius: 20; -fx-background-color: #3FB553;" text="CADASTRAR" textAlignment="CENTER" textFill="WHITE">
                      <font>
-                        <Font name="Dubai Regular" size="13.0" />
+                        <Font name="Dubai Bold" size="13.0" />
                      </font>
                   </Button>
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="71.0" layoutY="-22.0" pickOnBounds="true" preserveRatio="true" />
@@ -36,27 +31,27 @@
                         <Image url="@img/logowhite.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="261.0" layoutY="68.0" prefHeight="45.0" prefWidth="119.0" text="Cadastro" textFill="WHITE">
+                  <Label layoutX="261.0" layoutY="62.0" prefHeight="45.0" prefWidth="119.0" text="Cadastro" textFill="WHITE">
                      <font>
-                        <Font size="30.0" />
+                        <Font name="Dubai Regular" size="30.0" />
                      </font>
                      <effect>
-                        <Bloom />
+                        <Glow />
                      </effect>
                   </Label>
                   <PasswordField fx:id="password" layoutX="334.0" layoutY="128.0" prefHeight="34.0" prefWidth="258.0" promptText="Senha" style="-fx-background-color: #E9F8F9;" />
                   <TextField fx:id="matricula" layoutX="50.0" layoutY="128.0" prefHeight="34.0" prefWidth="258.0" promptText="Matricula" style="-fx-background-color: #E9F8F9;" />
-                  <RadioButton fx:id="escolhaProfessor" layoutX="236.0" layoutY="299.0" mnemonicParsing="false" onAction="#escolhaProfessor" text="Professor" textFill="WHITE">
+                  <RadioButton fx:id="escolhaProfessor" layoutX="227.0" layoutY="299.0" mnemonicParsing="false" onAction="#escolhaProfessor" text="Professor" textFill="WHITE">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="Dubai Bold" size="15.0" />
                      </font>
                      <toggleGroup>
                         <ToggleGroup fx:id="função" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="escolhaAluno" layoutX="343.0" layoutY="299.0" mnemonicParsing="false" onAction="#escolhaAluno" text="Aluno" textFill="WHITE" toggleGroup="$função">
+                  <RadioButton fx:id="escolhaAluno" layoutX="351.0" layoutY="299.0" mnemonicParsing="false" onAction="#escolhaAluno" text="Aluno" textFill="WHITE" toggleGroup="$função">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="Dubai Bold" size="15.0" />
                      </font>
                   </RadioButton>
                   <TextField fx:id="cpf" layoutX="50.0" layoutY="183.0" prefHeight="34.0" prefWidth="258.0" promptText="CPF" style="-fx-background-color: #E9F8F9;" />
