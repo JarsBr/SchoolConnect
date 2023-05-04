@@ -1,5 +1,9 @@
 package br.com.schoolconnect.projeto.view;
 
+/*
+ --module-path "C:\Users\2022101202010031\java_lib\javafx-sdk-20.0.1\lib" --add-modules=javafx.fxml,javafx.controls
+ --module-path "C:\Users\josej\Desktop\openjfx-20.0.1_windows-x64_bin-sdk (1)\javafx-sdk-20.0.1\lib" --add-modules=javafx.fxml,javafx.controls
+ */
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

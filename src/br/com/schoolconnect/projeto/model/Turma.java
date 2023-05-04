@@ -36,21 +36,28 @@ public class Turma {
 		this.numero = numero;
 		QuantAluno = quantAluno;
 	}
-	public void cadastrarDisciplinaTurma() {//METODO QUE CADASTRA A DISCIPLINA NA TURMA
-		String nome = "disciplina01", conteudo = "conteudo";
-		int carga = 123, periodo = 1;
-		disciplinaTurma.add(new Disciplina(nome, carga, periodo, conteudo));
-		disciplinaTurma.add(new Disciplina(nome, carga, periodo, conteudo));
-		disciplinaTurma.add(new Disciplina(nome, carga, periodo, conteudo));
+	public void cadastrarDisciplinaTurma(String nome, int carga, int periodo, String conteudo) {//METODO QUE CADASTRA A DISCIPLINA NA TURMA
 		disciplinaTurma.add(new Disciplina(nome, carga, periodo, conteudo));
 	}
-	public void mostrarDisciplinaTurma() {//METODO QUE MOSTRAS TODAS AS DISCIPLINAS DE UM TURMA
+	public void mostrarDisciplinaTurma(String nomeTurma) {//METODO QUE MOSTRAS TODAS AS DISCIPLINAS DE UM TURMA
 		for(Disciplina p: disciplinaTurma) {
-			System.out.println(p.getNome() + "" + p.getCargaHoraria());
+			
+			System.out.println("\nREGISTRO DE DICIPLINA: <"+nomeTurma+">"+"\nNome: "+p.getNome() + "\nCarga Horaria: " + p.getCargaHoraria() + "\nPeriodo Referente: " + p. getPeriodo());
 		}
-		
-		
-		
+		System.out.println("");
+	}
+	public void buscarDisciplinaTurma(String nomeBusca, String nomeTurma) {
+		boolean find = false;
+		System.out.println("Resultados da busca: "+ "\""+nomeBusca+ "\"");
+		for(Disciplina p: disciplinaTurma) {
+			if(p.getNome().equals(nomeBusca)) {
+				find = true;
+				System.out.println("\nREGISTRO DE DICIPLINA: <"+nomeTurma+">"+"\nNome: "+p.getNome() + "\nCarga Horaria: " + p.getCargaHoraria() + "\nPeriodo Referente: " + p. getPeriodo());
+			}
+		}
+		if(!find) {
+		System.out.println("\nNenhum Registro Encontrado");
+		}
 	}
 	
 	

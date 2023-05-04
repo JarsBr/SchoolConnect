@@ -16,7 +16,7 @@ public class Professor extends Pessoa{
 	public void setDiplomas(String diplomas) {
 		this.diplomas = diplomas;
 	}
-	public Professor(int matricula, String nome, int idade, int cpf, String telefone, String email, String historico,
+	public Professor(int matricula, String nome, int idade, String cpf, String telefone, String email, String historico,
 			String diplomas) {
 		super(matricula, nome, idade, cpf, telefone, email);
 		this.historico = historico;
