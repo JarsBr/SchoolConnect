@@ -54,6 +54,7 @@ public class ControllerInterfaceCadastro {
 
     }
 
+    @FXML
     void escolhaAluno(ActionEvent event) {/*
     	cadastrar.setOnAction((EventHandler<ActionEvent>) new EventHandler<ActionEvent>() {
             @Override
@@ -68,7 +69,7 @@ public class ControllerInterfaceCadastro {
                     alert.show();
                 }
             }
-        });*/
+        });*
     }
 
     @FXML
