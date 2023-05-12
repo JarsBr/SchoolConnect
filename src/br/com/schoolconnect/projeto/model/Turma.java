@@ -8,7 +8,7 @@ import java.util.ArrayList;
  * @author Jars
  */
 public class Turma {
-	ArrayList<Disciplina> disciplinaTurma = new ArrayList<Disciplina>();
+	/*ArrayList<Disciplina> disciplinaTurma = new ArrayList<Disciplina>();
 	private int idTurma;
 	private int numero;
 	private int QuantAluno;
@@ -37,7 +37,7 @@ public class Turma {
 		QuantAluno = quantAluno;
 	}
 	public void cadastrarDisciplinaTurma(String nome, int carga, int periodo, String conteudo) {//METODO QUE CADASTRA A DISCIPLINA NA TURMA
-		disciplinaTurma.add(new Disciplina(nome, carga, periodo, conteudo));
+		//disciplinaTurma.add(new Disciplina(nome, carga, periodo, conteudo));
 	}
 	public void mostrarDisciplinaTurma(String nomeTurma) {//METODO QUE MOSTRAS TODAS AS DISCIPLINAS DE UM TURMA
 		for(Disciplina p: disciplinaTurma) {
@@ -60,6 +60,6 @@ public class Turma {
 		}
 	}
 	
-	
+	*/
 	
 }
