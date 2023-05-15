@@ -4,7 +4,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -18,7 +17,7 @@
          <children>
             <Pane fx:id="panel" prefHeight="400.0" prefWidth="640.0" style="-fx-background-color: #2C3333; -fx-border-color: #222626; -fx-border-width: 3px;">
                <children>
-                  <Button fx:id="entrar" layoutX="272.0" layoutY="310.0" mnemonicParsing="false" onAction="#entrar" prefHeight="34.0" prefWidth="125.0" style="-fx-background-radius: 20; -fx-background-color: #3FB553;" text="ENTRAR" textAlignment="CENTER" textFill="WHITE">
+                  <Button fx:id="voltaInicio" layoutX="195.0" layoutY="310.0" mnemonicParsing="false" onAction="#voltaInicio" prefHeight="34.0" prefWidth="125.0" style="-fx-background-radius: 20; -fx-background-color: #3FB553;" text="VOLTAR" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Dubai Bold" size="13.0" />
                      </font>
@@ -33,20 +32,14 @@
                      <font>
                         <Font name="Dubai Regular" size="30.0" />
                      </font>
-                     <effect>
-                        <Glow />
-                     </effect>
                   </Label>
-                  <PasswordField fx:id="password" layoutX="188.0" layoutY="237.0" prefHeight="34.0" prefWidth="292.0" promptText="Senha" style="-fx-background-color: #E9F8F9;">
+                  <TextField fx:id="matricula" layoutX="189.0" layoutY="180.0" prefHeight="34.0" prefWidth="292.0" promptText="Matricula" style="-fx-background-color: #E9F8F9; -fx-background-radius: 10; -fx-border-radius: 5; -fx-border-width: 2; -fx-border-color: gray;" />
+                  <PasswordField fx:id="password" layoutX="189.0" layoutY="234.0" prefHeight="34.0" prefWidth="292.0" promptText="Senha" style="-fx-background-color: #E9F8F9; -fx-background-radius: 10; -fx-border-width: 2; -fx-border-radius: 5; -fx-border-color: gray;" />
+                  <Button fx:id="entrar" layoutX="344.0" layoutY="310.0" mnemonicParsing="false" onAction="#entrar" prefHeight="34.0" prefWidth="125.0" style="-fx-background-radius: 20; -fx-background-color: #3FB553;" text="ENTRAR" textAlignment="CENTER" textFill="WHITE">
                      <font>
-                        <Font name="Dubai Regular" size="14.0" />
+                        <Font name="Dubai Bold" size="13.0" />
                      </font>
-                  </PasswordField>
-                  <TextField fx:id="matricula" layoutX="189.0" layoutY="166.0" prefHeight="34.0" prefWidth="292.0" promptText="Matricula" style="-fx-background-color: #E9F8F9;">
-                     <font>
-                        <Font name="Dubai Regular" size="14.0" />
-                     </font>
-                  </TextField>
+                  </Button>
                </children>
             </Pane>
          </children>

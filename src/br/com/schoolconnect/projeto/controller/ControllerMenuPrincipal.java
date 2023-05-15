@@ -20,7 +20,7 @@ public class ControllerMenuPrincipal {
 
 	@FXML
 	void button_cadastro(ActionEvent event) {
-		
+
 		// Abre um nova tela
 		FXML_Cadastro tela = new FXML_Cadastro();
 		try {
@@ -29,11 +29,11 @@ public class ControllerMenuPrincipal {
 		} catch (Exception e) {
 			System.out.println("Erro ao executar a tela de cadastro");
 		}
-		
+
 		// Ao Abrir a nova tela, fecha o Menu
-				FXML_MenuPrincipal closeButton;
-				Stage stage = (Stage) FXML_MenuPrincipal.getScene().getWindow();
-				stage.close();		
+		FXML_MenuPrincipal closeButton;
+		Stage stage = (Stage) FXML_MenuPrincipal.getScene().getWindow();
+		stage.close();
 	}
 
 	@FXML

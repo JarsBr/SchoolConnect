@@ -6,7 +6,6 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -20,7 +19,7 @@
          <children>
             <Pane fx:id="panel" focusTraversable="true" prefHeight="400.0" prefWidth="640.0" style="-fx-background-color: #2C3333; -fx-border-color: #222626; -fx-border-width: 3px;">
                <children>
-                  <Button fx:id="cadastrar" layoutX="258.0" layoutY="341.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="34.0" prefWidth="125.0" style="-fx-background-radius: 20; -fx-background-color: #3FB553;" text="CADASTRAR" textAlignment="CENTER" textFill="WHITE">
+                  <Button fx:id="cadastrar" layoutX="338.0" layoutY="337.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="34.0" prefWidth="125.0" style="-fx-background-radius: 20; -fx-background-color: #3FB553;" text="CADASTRAR" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Dubai Bold" size="13.0" />
                      </font>
@@ -31,17 +30,14 @@
                         <Image url="@img/logowhite.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="261.0" layoutY="62.0" prefHeight="45.0" prefWidth="119.0" text="Cadastro" textFill="WHITE">
+                  <Label layoutX="261.0" layoutY="74.0" prefHeight="45.0" prefWidth="119.0" text="Cadastro" textFill="WHITE">
                      <font>
                         <Font name="Dubai Regular" size="30.0" />
                      </font>
-                     <effect>
-                        <Glow />
-                     </effect>
                   </Label>
-                  <PasswordField fx:id="password" layoutX="334.0" layoutY="128.0" prefHeight="34.0" prefWidth="258.0" promptText="Senha" style="-fx-background-color: #E9F8F9;" />
-                  <TextField fx:id="matricula" layoutX="50.0" layoutY="128.0" prefHeight="34.0" prefWidth="258.0" promptText="Matricula" style="-fx-background-color: #E9F8F9;" />
-                  <RadioButton fx:id="escolhaProfessor" layoutX="227.0" layoutY="299.0" mnemonicParsing="false" onAction="#escolhaProfessor" text="Professor" textFill="WHITE">
+                  <PasswordField fx:id="password" layoutX="334.0" layoutY="156.0" prefHeight="34.0" prefWidth="258.0" promptText="Senha" style="-fx-background-color: #E9F8F9; -fx-background-radius: 10; -fx-border-width: 2; -fx-border-radius: 5; -fx-border-color: gray;" />
+                  <TextField fx:id="matricula" layoutX="50.0" layoutY="156.0" prefHeight="34.0" prefWidth="258.0" promptText="Matricula" style="-fx-background-color: #E9F8F9; -fx-background-radius: 10; -fx-border-radius: 5; -fx-border-width: 2; -fx-border-color: gray;" />
+                  <RadioButton fx:id="escolhaProfessor" layoutX="227.0" layoutY="281.0" mnemonicParsing="false" onAction="#escolhaProfessor" text="Professor" textFill="WHITE">
                      <font>
                         <Font name="Dubai Bold" size="15.0" />
                      </font>
@@ -49,15 +45,18 @@
                         <ToggleGroup fx:id="função" />
                      </toggleGroup>
                   </RadioButton>
-                  <RadioButton fx:id="escolhaAluno" layoutX="351.0" layoutY="299.0" mnemonicParsing="false" onAction="#escolhaAluno" text="Aluno" textFill="WHITE" toggleGroup="$função">
+                  <RadioButton fx:id="escolhaAluno" layoutX="348.0" layoutY="281.0" mnemonicParsing="false" onAction="#escolhaAluno" text="Aluno" textFill="WHITE" toggleGroup="$função">
                      <font>
                         <Font name="Dubai Bold" size="15.0" />
                      </font>
                   </RadioButton>
-                  <TextField fx:id="cpf" layoutX="50.0" layoutY="183.0" prefHeight="34.0" prefWidth="258.0" promptText="CPF" style="-fx-background-color: #E9F8F9;" />
-                  <TextField fx:id="email" layoutX="50.0" layoutY="239.0" prefHeight="34.0" prefWidth="258.0" promptText="Email" style="-fx-background-color: #E9F8F9;" />
-                  <TextField fx:id="endereco" layoutX="334.0" layoutY="183.0" prefHeight="34.0" prefWidth="258.0" promptText="Endereço" style="-fx-background-color: #E9F8F9;" />
-                  <TextField fx:id="fone" layoutX="334.0" layoutY="239.0" prefHeight="34.0" prefWidth="258.0" promptText="Telefone" style="-fx-background-color: #E9F8F9;" />
+                  <TextField fx:id="nome" layoutX="50.0" layoutY="211.0" prefHeight="34.0" prefWidth="258.0" promptText="Nome" style="-fx-background-color: #E9F8F9; -fx-background-radius: 10; -fx-border-radius: 5; -fx-border-width: 2; -fx-border-color: gray;" />
+                  <TextField fx:id="email" layoutX="334.0" layoutY="211.0" prefHeight="34.0" prefWidth="258.0" promptText="Email" style="-fx-background-color: #E9F8F9; -fx-background-radius: 10; -fx-border-radius: 5; -fx-border-width: 2; -fx-border-color: gray;" />
+                  <Button fx:id="voltaInicio" layoutX="179.0" layoutY="337.0" mnemonicParsing="false" onAction="#voltaInicio" prefHeight="34.0" prefWidth="125.0" style="-fx-background-radius: 20; -fx-background-color: #3FB553;" text="VOLTAR" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Dubai Bold" size="13.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
          </children>
