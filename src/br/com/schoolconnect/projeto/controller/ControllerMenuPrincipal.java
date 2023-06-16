@@ -1,12 +1,11 @@
 package br.com.schoolconnect.projeto.controller;
 
-import java.io.Closeable;
-
-import br.com.schoolconnect.projeto.view.FXML_Cadastro;
-import br.com.schoolconnect.projeto.view.FXML_Login;
-import br.com.schoolconnect.projeto.view.FXML_MenuPrincipal;
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
@@ -20,38 +19,36 @@ public class ControllerMenuPrincipal {
 
 	@FXML
 	void button_cadastro(ActionEvent event) {
-
-		// Abre um nova tela
-		FXML_Cadastro tela = new FXML_Cadastro();
-		try {
-			tela.start(new Stage());
-			FXML_Cadastro.getStage().show();
-		} catch (Exception e) {
-			System.out.println("Erro ao executar a tela de cadastro");
-		}
-
-		// Ao Abrir a nova tela, fecha o Menu
-		FXML_MenuPrincipal closeButton;
-		Stage stage = (Stage) FXML_MenuPrincipal.getScene().getWindow();
-		stage.close();
+		Stage currentStage = (Stage) cadastro.getScene().getWindow();
+        currentStage.close();
+        
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Cadastro.fxml"));
+            Parent root = loader.load();
+            
+            Stage newStage = new Stage();
+            newStage.setScene(new Scene(root));
+            newStage.show();
+        } catch (IOException e) {
+            System.out.println("Erro ao carregar a tela de menu");
+        }
 	}
 
 	@FXML
 	void button_login(ActionEvent event) {
-
-		// Abre um nova tela
-		FXML_Login tela = new FXML_Login();
-		try {
-			tela.start(new Stage());
-			FXML_Login.getStage().show();
-		} catch (Exception e) {
-			System.out.println("Erro ao executar a tela de login");
-		}
-
-		// Ao Abrir a nova tela, fecha o Menu
-		FXML_MenuPrincipal closeButton;
-		Stage stage = (Stage) FXML_MenuPrincipal.getScene().getWindow();
-		stage.close();
+		Stage currentStage = (Stage) login.getScene().getWindow();
+        currentStage.close();
+        
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Login.fxml"));
+            Parent root = loader.load();
+            
+            Stage newStage = new Stage();
+            newStage.setScene(new Scene(root));
+            newStage.show();
+        } catch (IOException e) {
+            System.out.println("Erro ao carregar a tela de menu");
+        }
 	}
 
 	

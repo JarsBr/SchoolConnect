@@ -181,27 +181,34 @@ public class DbUtils {
         ResultSet resultSet = null;
         try {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/connectschool", "root", "");
-            
-            //  aqui fiz uma subquery para funcionar a verificação da tabela aluno e professor ao mesmo tempo
-            preparedStatement = connection.prepareStatement("SELECT password FROM (SELECT password, matricula FROM professor UNION ALL SELECT password, matricula FROM aluno) AS users WHERE matricula = ?"); 
-            preparedStatement.setString(1, matricula);
+
+            // Aqui fiz uma subquery para funcionar a verificação da tabela aluno e professor ao mesmo tempo
+            preparedStatement = connection
+                    .prepareStatement("SELECT password, tipo FROM (SELECT password, matricula, 'professor' AS tipo FROM professor UNION ALL SELECT password, matricula, 'aluno' AS tipo FROM aluno) AS users WHERE matricula = ?");
             preparedStatement.setString(1, matricula);
             resultSet = preparedStatement.executeQuery();
 
-            if(!resultSet.isBeforeFirst()) {
-                System.out.println("Usuario nao encontrado no banco de dados!");
+            if (!resultSet.isBeforeFirst()) {
+                System.out.println("Usuário não encontrado no banco de dados!");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setContentText("Credenciais incorretas.");
                 alert.show();
             } else {
                 while (resultSet.next()) {
                     String retrievedPassword = resultSet.getString("password");
+                    String userType = resultSet.getString("tipo");
                     if (retrievedPassword.equals(password)) {
-                        mudarTela(event, "../view/InterfaceProfessor.fxml", "SchoolConnect", matricula);
+                        if (userType.equals("professor")) {
+                            // Abrir interface do professor
+                            mudarTela(event, "../view/InterfaceProfessor.fxml", "SchoolConnect", matricula);
+                        } else if (userType.equals("aluno")) {
+                            // Abrir interface do aluno
+                            mudarTela(event, "../view/InterfaceAluno.fxml", "SchoolConnect", matricula);
+                        }
                     } else {
-                        System.out.println("A senha nao confere.");
+                        System.out.println("A senha não confere.");
                         Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setContentText("As credenciais estao incorretas.");
+                        alert.setContentText("As credenciais estão incorretas.");
                         alert.show();
                     }
                 }
