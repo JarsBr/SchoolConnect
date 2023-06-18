@@ -3,8 +3,7 @@ package br.com.schoolconnect.projeto.controller;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.fxml.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,6 +11,9 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.animation.TranslateTransition;
+import javafx.fxml.FXML;
+import javafx.util.Duration;
 
 public class ControllerInterfaceProfessor {
 
@@ -73,36 +75,33 @@ public class ControllerInterfaceProfessor {
             System.out.println("Erro ao carregar a tela de menu");
         }
     }
+
+    @FXML
+    void telaClicada(MouseEvent event) {
+        Label labelClicado = (Label) event.getSource();
+        
+        panelAtividades.setVisible(labelClicado == atividadesTela);
+        panelDados.setVisible(labelClicado == dadosTela);
+        panelEstagio.setVisible(labelClicado == estagioTela);
+        panelHistorico.setVisible(labelClicado == historicoTela);
+        panelHorario.setVisible(labelClicado == horarioTela);
+        panelMaterias.setVisible(labelClicado == materiasTela);
+    }
     
-
+    // animações bacanas
     @FXML
-    void atividadesTela(MouseEvent event) {
-        // Ação quando o rótulo de atividadesTela for clicado
+    private void labelMousePressed(MouseEvent event) {
+        Label label = (Label) event.getSource();
+        TranslateTransition transition = new TranslateTransition(Duration.seconds(0.2), label);
+        transition.setToY(5); // Define o deslocamento vertical
+        transition.play();
     }
 
     @FXML
-    void dadosTela(MouseEvent event) {
-        // Ação quando o rótulo de dadosTela for clicado
+    private void labelMouseReleased(MouseEvent event) {
+        Label label = (Label) event.getSource();
+        TranslateTransition transition = new TranslateTransition(Duration.seconds(0.2), label);
+        transition.setToY(0); // Retorna à posição original
+        transition.play();
     }
-
-    @FXML
-    void estagioTela(MouseEvent event) {
-        // Ação quando o rótulo de estagioTela for clicado
-    }
-
-    @FXML
-    void historicoTela(MouseEvent event) {
-        // Ação quando o rótulo de historicoTela for clicado
-    }
-
-    @FXML
-    void horarioTela(MouseEvent event) {
-        // Ação quando o rótulo de horarioTela for clicado
-    }
-
-    @FXML
-    void materiasTela(MouseEvent event) {
-        // Ação quando o rótulo de materiasTela for clicado
-    }
-
 }
