@@ -31,7 +31,7 @@ public class DbUtils {
             try {
                 FXMLLoader loader = new FXMLLoader(DbUtils.class.getResource(fxmlFile));
                 root = loader.load();
-                LoggedInController loggedInController = loader.getController();
+                loader.getController();
             } catch (IOException e) {
                 e.printStackTrace();
             }

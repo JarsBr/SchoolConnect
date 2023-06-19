@@ -2,32 +2,42 @@ package br.com.schoolconnect.projeto.controller;
 
 import java.io.IOException;
 
-import br.com.schoolconnect.projeto.database.DbUtils;
 import br.com.schoolconnect.projeto.model.Global;
-import br.com.schoolconnect.projeto.teste.TesteClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TableView;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
 import javafx.fxml.FXML;
 import javafx.util.Duration;
 
 public class ControllerInterfaceAluno {
 
-	@FXML
-    private Label atividadesTela;
-
     @FXML
     private Label boletimTela;
 
     @FXML
+    private Button consultaProfessor;
+
+    @FXML
     private Label dadosTela;
+
+    @FXML
+    private Label data_inicio;
+
+    @FXML
+    private Label disciplinaTela;
 
     @FXML
     private Label email;
@@ -36,10 +46,16 @@ public class ControllerInterfaceAluno {
     private Label horarioTela;
 
     @FXML
-    private Label materiasTela;
+    private ListView<?> listDisciplina;
+
+    @FXML
+    private ListView<?> listProfessor;
 
     @FXML
     private Label matricula;
+
+    @FXML
+    private Button matricularDisciplina;
 
     @FXML
     private Label nome;
@@ -48,19 +64,16 @@ public class ControllerInterfaceAluno {
     private Pane panel;
 
     @FXML
-    private Pane panelAtividades;
-
-    @FXML
     private Pane panelBoletim;
 
     @FXML
     private Pane panelDados;
 
     @FXML
-    private Pane panelHorario;
+    private Pane panelDisciplina;
 
     @FXML
-    private Pane panelMaterias;
+    private Pane panelHorario;
 
     @FXML
     private Pane panelProfessores;
@@ -71,6 +84,15 @@ public class ControllerInterfaceAluno {
     @FXML
     private Button sair;
 
+    @FXML
+    private Label situacao;
+
+    @FXML
+    private TableView<?> tableHorario;
+
+    @FXML
+    private ImageView welcome;
+    
     @FXML
     void button_sair(ActionEvent event) {
         Stage currentStage = (Stage) sair.getScene().getWindow();
@@ -89,10 +111,24 @@ public class ControllerInterfaceAluno {
     }
 
     @FXML
+    void consultaProfessor(ActionEvent event) {
+
+    }
+
+    @FXML
+    void matricularDisciplina(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void tableHorario(ActionEvent event) {
+
+    }
+    
+    @FXML
     void telaClicada(MouseEvent event) {
         Label labelClicado = (Label) event.getSource();
         
-        panelAtividades.setVisible(labelClicado == atividadesTela);
         panelDados.setVisible(labelClicado == dadosTela);
         
         matricula.setText(Global.aluno.getMatricula());
@@ -102,11 +138,22 @@ public class ControllerInterfaceAluno {
         panelProfessores.setVisible(labelClicado == professoresTela);
         panelBoletim.setVisible(labelClicado == boletimTela);
         panelHorario.setVisible(labelClicado == horarioTela);
-        panelMaterias.setVisible(labelClicado == materiasTela);
+        panelDisciplina.setVisible(labelClicado == disciplinaTela);
     }
    
     
     // animações bacanas
+    
+    public void initialize() {
+        Timeline timeline = new Timeline(
+            new KeyFrame(Duration.ZERO, new KeyValue(welcome.translateYProperty(), 0)),
+            new KeyFrame(Duration.seconds(3), new KeyValue(welcome.translateYProperty(), -50))
+        );
+        timeline.setAutoReverse(true);
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+    }
+    
     @FXML
     private void labelMousePressed(MouseEvent event) {
         Label label = (Label) event.getSource();
