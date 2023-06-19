@@ -1,14 +1,24 @@
 package br.com.schoolconnect.projeto.controller;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
+import br.com.schoolconnect.projeto.model.Aluno;
+import br.com.schoolconnect.projeto.model.Disciplina;
 import br.com.schoolconnect.projeto.model.Global;
+import br.com.schoolconnect.projeto.model.Professor;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
@@ -19,7 +29,10 @@ import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.animation.TranslateTransition;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.util.Callback;
 import javafx.util.Duration;
 
 public class ControllerInterfaceAluno {
@@ -46,10 +59,10 @@ public class ControllerInterfaceAluno {
     private Label horarioTela;
 
     @FXML
-    private ListView<?> listDisciplina;
+    private ListView<String> listDisciplina;
 
     @FXML
-    private ListView<?> listProfessor;
+    private ListView<String> listProfessor;
 
     @FXML
     private Label matricula;
@@ -134,13 +147,188 @@ public class ControllerInterfaceAluno {
         matricula.setText(Global.aluno.getMatricula());
         nome.setText(Global.aluno.getNome());
         email.setText(Global.aluno.getEmail());
+        data_inicio.setText(Global.aluno.getData_inicio());
+        situacao.setText(Global.aluno.getSituacao());
+        
         
         panelProfessores.setVisible(labelClicado == professoresTela);
+        
+        ObservableList<String> items = FXCollections.observableArrayList(pegarTodosProfessores());
+        
+        
+
+        // Adiciona o cabeçalho
+        items.add(0, "Matricula\tNome\tEmail");
+
+        listProfessor.setItems(items);
+
+        // Define a célula personalizada para exibir os itens do ListView
+        listProfessor.setCellFactory((Callback<ListView<String>, ListCell<String>>) new Callback<ListView<String>, ListCell<String>>() {
+            @Override
+            public ListCell<String> call(ListView<String> listView) {
+                return new ListCell<String>() {
+                    @Override
+                    protected void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        setText(item);
+                        if (getIndex() == 0) {
+                            setStyle("-fx-font-weight: bold"); // Estilo para o cabeçalho
+                        }
+                    }
+                };
+            }
+        });
+        
+        
         panelBoletim.setVisible(labelClicado == boletimTela);
         panelHorario.setVisible(labelClicado == horarioTela);
         panelDisciplina.setVisible(labelClicado == disciplinaTela);
+        
+        ObservableList<String> itemsDisciplina = FXCollections.observableArrayList(pegarDisciplinasAluno());
+
+		// Adiciona o cabeçalho
+		itemsDisciplina.add(0, "Codigo-Disciplina\tNome\tDescrição");
+
+		listDisciplina.setItems(itemsDisciplina);
+
+		// Define a célula personalizada para exibir os itens do ListView
+		listDisciplina.setCellFactory((Callback<ListView<String>, ListCell<String>>) new Callback<ListView<String>, ListCell<String>>() {
+			@Override
+			public ListCell<String> call(ListView<String> listView) {
+				return new ListCell<String>() {
+					@Override
+					protected void updateItem(String item, boolean empty) {
+						super.updateItem(item, empty);
+						setText(item);
+						if (getIndex() == 0) {
+							setStyle("-fx-font-weight: bold"); // Estilo para o cabeçalho
+						}
+					}
+				};
+			}
+		});
     }
    
+    public ArrayList<String> pegarTodosProfessores() {
+   	 Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+     // Criar uma ArrayList para armazenar os alunos
+    	ArrayList<String> listaProfessores = new ArrayList<>();
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/connectschool", "root", "");
+
+            // Aqui fiz uma subquery para funcionar a verificação da tabela aluno e professor ao mesmo tempo
+           
+
+   	
+
+   	// Recuperar as informações dos alunos do banco de dados
+   	String query = "SELECT matricula, nome, email, graus_academico, curriculo FROM professor";
+   	preparedStatement = connection.prepareStatement(query);
+   	ResultSet professorResultSet = preparedStatement.executeQuery();
+
+   	// Percorrer os resultados do banco de dados
+   	while (professorResultSet.next()) {
+   		Professor professor = new Professor();
+        professor.setMatricula(professorResultSet.getString("matricula"));
+        professor.setNome(professorResultSet.getString("nome"));
+        professor.setEmail(professorResultSet.getString("email"));
+        professor.setGraus(professorResultSet.getString("graus_academico"));
+        professor.setCurriculo(professorResultSet.getString("curriculo"));
+
+   	    // Adicionar o aluno à lista
+        listaProfessores.add(professor.toString());
+   	}
+
+   	// Agora, a listaAlunos contém todos os alunos do banco de dados
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (resultSet != null) {
+                try {
+                    resultSet.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (preparedStatement != null) {
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+		return listaProfessores;
+    
+	}
+    
+    public ArrayList<String> pegarDisciplinasAluno() {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ResultSet resultSet = null;
+		// Criar uma ArrayList para armazenar os alunos
+		ArrayList<String> listaDisciplina = new ArrayList<>();
+		try {
+			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/connectschool", "root", "");
+
+
+			String query = "SELECT cod_disciplina, nome, descricao, conteudo, carga_horaria FROM disciplina WHERE cod_disciplina IN (SELECT cod_disciplina FROM disciplina_ofertada WHERE id_disciplina_ofertada IN (SELECT id_disciplina_ofertada FROM aluno_has_disciplina WHERE id_aluno = ?))"; 
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, Global.aluno.getMatricula());
+			ResultSet disciplinaResultSet = preparedStatement.executeQuery();
+
+
+			// Percorrer os resultados do banco de dados
+			while (disciplinaResultSet.next()) {
+			    Disciplina disciplina = new Disciplina();
+			    disciplina.setCodDisciplina(disciplinaResultSet.getString("cod_disciplina"));
+			    disciplina.setNome(disciplinaResultSet.getString("nome"));
+			    disciplina.setDescricao(disciplinaResultSet.getString("descricao"));
+			    disciplina.setConteudo(disciplinaResultSet.getString("conteudo"));
+
+			    // Adicionar o disciplina à lista
+			    listaDisciplina.add(disciplina.toString());
+			}
+
+
+			// Agora, a listaAlunos contém todos os alunos do banco de dados
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (resultSet != null) {
+				try {
+					resultSet.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (preparedStatement != null) {
+				try {
+					preparedStatement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return listaDisciplina;
+
+	}
     
     // animações bacanas
     

@@ -47,6 +47,10 @@ public class Aluno {
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
 	}
+	@Override
+	public String toString() {
+		return "" + matricula + "\t\t" + nome + "\t" + email;
+	}
 	
 	
 }

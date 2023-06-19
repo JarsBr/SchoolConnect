@@ -6,15 +6,16 @@ package br.com.schoolconnect.projeto.model;
  * @author Jars
  */
 public class Disciplina {
-	private int codDisciplina;
+	private String codDisciplina;
 	private String nome;
 	private String descricao;
 	private String conteudo;
 	private int cargaHoraria;
-	public int getCodDisciplina() {
+	
+	public String getCodDisciplina() {
 		return codDisciplina;
 	}
-	public void setCodDisciplina(int codDisciplina) {
+	public void setCodDisciplina(String codDisciplina) {
 		this.codDisciplina = codDisciplina;
 	}
 	public String getNome() {
@@ -41,14 +42,12 @@ public class Disciplina {
 	public void setCargaHoraria(int cargaHoraria) {
 		this.cargaHoraria = cargaHoraria;
 	}
-	public Disciplina(int codDisciplina, String nome, String descricao, String conteudo, int cargaHoraria) {
-		super();
-		this.codDisciplina = codDisciplina;
-		this.nome = nome;
-		this.descricao = descricao;
-		this.conteudo = conteudo;
-		this.cargaHoraria = cargaHoraria;
+	@Override
+	public String toString() {
+		return "" + codDisciplina + "\t" + nome + "\t" + descricao;
 	}
+	
+	
 	
 	
 }

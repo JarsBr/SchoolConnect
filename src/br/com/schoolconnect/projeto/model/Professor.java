@@ -36,6 +36,10 @@ public String getCurriculo() {
 public void setCurriculo(String curriculo) {
 	this.curriculo = curriculo;
 }
+@Override
+public String toString() {
+	return "" + matricula + "\t" + nome + "\t" + email;
+}
 
 
 }
