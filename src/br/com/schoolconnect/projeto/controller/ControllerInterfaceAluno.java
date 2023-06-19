@@ -24,10 +24,10 @@ public class ControllerInterfaceAluno {
     private Label dadosTela;
 
     @FXML
-    private Label estagioTela;
+    private Label professoresTela;
 
     @FXML
-    private Label historicoTela;
+    private Label boletimTela;
 
     @FXML
     private Label horarioTela;
@@ -45,10 +45,10 @@ public class ControllerInterfaceAluno {
     private Pane panelDados;
 
     @FXML
-    private Pane panelEstagio;
+    private Pane panelProfessores;
 
     @FXML
-    private Pane panelHistorico;
+    private Pane panelBoletim;
 
     @FXML
     private Pane panelHorario;
@@ -82,8 +82,8 @@ public class ControllerInterfaceAluno {
         
         panelAtividades.setVisible(labelClicado == atividadesTela);
         panelDados.setVisible(labelClicado == dadosTela);
-        panelEstagio.setVisible(labelClicado == estagioTela);
-        panelHistorico.setVisible(labelClicado == historicoTela);
+        panelProfessores.setVisible(labelClicado == professoresTela);
+        panelBoletim.setVisible(labelClicado == boletimTela);
         panelHorario.setVisible(labelClicado == horarioTela);
         panelMaterias.setVisible(labelClicado == materiasTela);
     }

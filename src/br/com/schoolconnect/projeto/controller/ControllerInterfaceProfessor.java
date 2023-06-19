@@ -17,17 +17,27 @@ import javafx.util.Duration;
 
 public class ControllerInterfaceProfessor {
 
+
+    @FXML
+    private Label alunosTela;
+
     @FXML
     private Label atividadesTela;
+
+    @FXML
+    private Button cadastroDados;
+
+    @FXML
+    private Label curriculo;
 
     @FXML
     private Label dadosTela;
 
     @FXML
-    private Label estagioTela;
+    private Label email;
 
     @FXML
-    private Label historicoTela;
+    private Label graus_academicos;
 
     @FXML
     private Label horarioTela;
@@ -36,7 +46,19 @@ public class ControllerInterfaceProfessor {
     private Label materiasTela;
 
     @FXML
+    private Label matricula;
+
+    @FXML
+    private Label nome;
+
+    @FXML
+    private Label notasTela;
+
+    @FXML
     private Pane panel;
+
+    @FXML
+    private Pane panelAlunos;
 
     @FXML
     private Pane panelAtividades;
@@ -45,17 +67,13 @@ public class ControllerInterfaceProfessor {
     private Pane panelDados;
 
     @FXML
-    private Pane panelEstagio;
-
-    @FXML
-    private Pane panelHistorico;
-
-    @FXML
     private Pane panelHorario;
 
     @FXML
     private Pane panelMaterias;
 
+    @FXML
+    private Pane panelNotas;
     @FXML
     private Button sair;
 
@@ -77,13 +95,18 @@ public class ControllerInterfaceProfessor {
     }
 
     @FXML
+    void cadastroDados(ActionEvent event) {
+
+    }
+    
+    @FXML
     void telaClicada(MouseEvent event) {
         Label labelClicado = (Label) event.getSource();
         
         panelAtividades.setVisible(labelClicado == atividadesTela);
         panelDados.setVisible(labelClicado == dadosTela);
-        panelEstagio.setVisible(labelClicado == estagioTela);
-        panelHistorico.setVisible(labelClicado == historicoTela);
+        panelAlunos.setVisible(labelClicado == alunosTela);
+        panelNotas.setVisible(labelClicado == notasTela);
         panelHorario.setVisible(labelClicado == horarioTela);
         panelMaterias.setVisible(labelClicado == materiasTela);
     }
