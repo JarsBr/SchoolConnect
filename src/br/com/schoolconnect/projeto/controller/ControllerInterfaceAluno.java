@@ -2,6 +2,9 @@ package br.com.schoolconnect.projeto.controller;
 
 import java.io.IOException;
 
+import br.com.schoolconnect.projeto.database.DbUtils;
+import br.com.schoolconnect.projeto.model.Global;
+import br.com.schoolconnect.projeto.teste.TesteClass;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.Parent;
@@ -17,17 +20,17 @@ import javafx.util.Duration;
 
 public class ControllerInterfaceAluno {
 
-    @FXML
+	@FXML
     private Label atividadesTela;
+
+    @FXML
+    private Label boletimTela;
 
     @FXML
     private Label dadosTela;
 
     @FXML
-    private Label professoresTela;
-
-    @FXML
-    private Label boletimTela;
+    private Label email;
 
     @FXML
     private Label horarioTela;
@@ -36,25 +39,34 @@ public class ControllerInterfaceAluno {
     private Label materiasTela;
 
     @FXML
+    private Label matricula;
+
+    @FXML
+    private Label nome;
+
+    @FXML
     private Pane panel;
 
     @FXML
     private Pane panelAtividades;
 
     @FXML
-    private Pane panelDados;
-
-    @FXML
-    private Pane panelProfessores;
-
-    @FXML
     private Pane panelBoletim;
+
+    @FXML
+    private Pane panelDados;
 
     @FXML
     private Pane panelHorario;
 
     @FXML
     private Pane panelMaterias;
+
+    @FXML
+    private Pane panelProfessores;
+
+    @FXML
+    private Label professoresTela;
 
     @FXML
     private Button sair;
@@ -82,11 +94,17 @@ public class ControllerInterfaceAluno {
         
         panelAtividades.setVisible(labelClicado == atividadesTela);
         panelDados.setVisible(labelClicado == dadosTela);
+        
+        matricula.setText(Global.aluno.getMatricula());
+        nome.setText(Global.aluno.getNome());
+        email.setText(Global.aluno.getEmail());
+        
         panelProfessores.setVisible(labelClicado == professoresTela);
         panelBoletim.setVisible(labelClicado == boletimTela);
         panelHorario.setVisible(labelClicado == horarioTela);
         panelMaterias.setVisible(labelClicado == materiasTela);
     }
+   
     
     // animações bacanas
     @FXML

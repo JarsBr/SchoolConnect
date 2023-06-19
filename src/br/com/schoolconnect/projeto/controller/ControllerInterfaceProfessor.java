@@ -2,6 +2,7 @@ package br.com.schoolconnect.projeto.controller;
 
 import java.io.IOException;
 
+import br.com.schoolconnect.projeto.model.Global;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.Parent;
@@ -105,6 +106,13 @@ public class ControllerInterfaceProfessor {
         
         panelAtividades.setVisible(labelClicado == atividadesTela);
         panelDados.setVisible(labelClicado == dadosTela);
+        
+        matricula.setText(Global.professor.getMatricula());
+        nome.setText(Global.professor.getNome());
+        email.setText(Global.professor.getEmail());
+        graus_academicos.setText(Global.professor.getGraus());
+        curriculo.setText(Global.professor.getCurriculo());
+        
         panelAlunos.setVisible(labelClicado == alunosTela);
         panelNotas.setVisible(labelClicado == notasTela);
         panelHorario.setVisible(labelClicado == horarioTela);

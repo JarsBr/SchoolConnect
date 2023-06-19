@@ -11,6 +11,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.*;
 
+import br.com.schoolconnect.projeto.model.Global;
+import br.com.schoolconnect.projeto.model.Aluno;
+import br.com.schoolconnect.projeto.model.Professor;
+
 /*
  * @author italo and jars
  * Uma classe inteira para funções e métodos que utilizarmos para o Banco de Dados e sua conexão.
@@ -199,9 +203,46 @@ public class DbUtils {
                     String userType = resultSet.getString("tipo");
                     if (retrievedPassword.equals(password)) {
                         if (userType.equals("professor")) {
+                        	
+                        	// Recuperar as informações do professor do banco de dados
+                            String query = "SELECT nome, email, graus_academico, curriculo FROM professor WHERE matricula = ?";
+                            preparedStatement = connection.prepareStatement(query);
+                            preparedStatement.setString(1, matricula);
+                            ResultSet professorResultSet = preparedStatement.executeQuery();
+                            if (professorResultSet.next()) {
+                                Professor professor = new Professor();
+                                professor.setMatricula(matricula);
+                                professor.setNome(professorResultSet.getString("nome"));
+                                professor.setEmail(professorResultSet.getString("email"));
+                                professor.setGraus(professorResultSet.getString("graus_academico"));
+                                professor.setCurriculo(professorResultSet.getString("curriculo"));
+                                
+                                // Salvar o objeto professor em uma variável Global
+                                Global.professor = professor;
+                                //Global.username = professor.getNome();
+                            }
                             // Abrir interface do professor
                             mudarTela(event, "../view/InterfaceProfessor.fxml", "SchoolConnect", matricula);
                         } else if (userType.equals("aluno")) {
+                        	
+                        	// Recuperar as informações do aluno do banco de dados
+                            String query = "SELECT nome, email, id_curso_periodo, data_inicio, situacao FROM aluno WHERE matricula = ?";
+                            preparedStatement = connection.prepareStatement(query);
+                            preparedStatement.setString(1, matricula);
+                            ResultSet alunoResultSet = preparedStatement.executeQuery();
+                            if (alunoResultSet.next()) {
+                                Aluno aluno = new Aluno();
+                                aluno.setMatricula(matricula);
+                                aluno.setNome(alunoResultSet.getString("nome"));
+                                aluno.setEmail(alunoResultSet.getString("email"));
+                                aluno.setId_curso_periodo(alunoResultSet.getString("id_curso_periodo"));
+                                aluno.setData_inicio(alunoResultSet.getString("data_inicio"));
+                                aluno.setSituacao(alunoResultSet.getString("situacao"));
+                                
+                                // Salvar o objeto aluno em uma variável Global
+                                Global.aluno = aluno;
+                              
+                            }
                             // Abrir interface do aluno
                             mudarTela(event, "../view/InterfaceAluno.fxml", "SchoolConnect", matricula);
                         }
@@ -239,4 +280,6 @@ public class DbUtils {
             }
         }
     }
+    
+
 }
