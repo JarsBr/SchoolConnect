@@ -5,8 +5,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
@@ -45,7 +44,7 @@
                         </ImageView>
                         <Pane layoutX="14.0" layoutY="56.0" prefHeight="484.0" prefWidth="154.0" style="-fx-background-color: #191c1c; -fx-background-radius: 5;">
                            <children>
-                              <Label fx:id="dadosTela" alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="32.0" onMouseClicked="#telaClicada" onMousePressed="#labelMousePressed" onMouseReleased="#labelMouseReleased" prefHeight="41.0" prefWidth="71.0" text="Dados" textFill="WHITE">
+                              <Label fx:id="dadosTela" alignment="CENTER" contentDisplay="CENTER" layoutX="42.0" layoutY="81.0" onMouseClicked="#telaClicada" onMousePressed="#labelMousePressed" onMouseReleased="#labelMouseReleased" prefHeight="41.0" prefWidth="71.0" text="Dados" textFill="WHITE">
                                  <font>
                                     <Font name="Dubai Bold" size="22.0" />
                                  </font>
@@ -53,7 +52,7 @@
                                     <Cursor fx:constant="DEFAULT" />
                                  </cursor>
                               </Label>
-                              <Label fx:id="horarioTela" alignment="CENTER" contentDisplay="CENTER" layoutX="36.0" layoutY="124.0" onMouseClicked="#telaClicada" onMousePressed="#labelMousePressed" onMouseReleased="#labelMouseReleased" prefHeight="41.0" prefWidth="82.0" text="Horário" textFill="WHITE">
+                              <Label fx:id="disciplinaTela" alignment="CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="162.0" onMouseClicked="#telaClicada" onMousePressed="#labelMousePressed" onMouseReleased="#labelMouseReleased" prefHeight="41.0" prefWidth="112.0" text="Disciplinas" textFill="WHITE">
                                  <font>
                                     <Font name="Dubai Bold" size="22.0" />
                                  </font>
@@ -61,7 +60,7 @@
                                     <Cursor fx:constant="DEFAULT" />
                                  </cursor>
                               </Label>
-                              <Label fx:id="disciplinaTela" alignment="CENTER" contentDisplay="CENTER" layoutX="22.0" layoutY="216.0" onMouseClicked="#telaClicada" onMousePressed="#labelMousePressed" onMouseReleased="#labelMouseReleased" prefHeight="41.0" prefWidth="112.0" text="Disciplinas" textFill="WHITE">
+                              <Label fx:id="notasTela" alignment="CENTER" contentDisplay="CENTER" layoutX="30.0" layoutY="243.0" onMouseClicked="#telaClicada" onMousePressed="#labelMousePressed" onMouseReleased="#labelMouseReleased" prefHeight="41.0" prefWidth="94.0" text="Notas" textFill="WHITE">
                                  <font>
                                     <Font name="Dubai Bold" size="22.0" />
                                  </font>
@@ -69,15 +68,7 @@
                                     <Cursor fx:constant="DEFAULT" />
                                  </cursor>
                               </Label>
-                              <Label fx:id="notasTela" alignment="CENTER" contentDisplay="CENTER" layoutX="30.0" layoutY="311.0" onMouseClicked="#telaClicada" onMousePressed="#labelMousePressed" onMouseReleased="#labelMouseReleased" prefHeight="41.0" prefWidth="94.0" text="Notas" textFill="WHITE">
-                                 <font>
-                                    <Font name="Dubai Bold" size="22.0" />
-                                 </font>
-                                 <cursor>
-                                    <Cursor fx:constant="DEFAULT" />
-                                 </cursor>
-                              </Label>
-                              <Label fx:id="alunosTela" alignment="CENTER" contentDisplay="CENTER" layoutX="36.0" layoutY="409.0" onMouseClicked="#telaClicada" onMousePressed="#labelMousePressed" onMouseReleased="#labelMouseReleased" prefHeight="41.0" prefWidth="82.0" text="Alunos" textFill="WHITE">
+                              <Label fx:id="alunosTela" alignment="CENTER" contentDisplay="CENTER" layoutX="36.0" layoutY="333.0" onMouseClicked="#telaClicada" onMousePressed="#labelMousePressed" onMouseReleased="#labelMouseReleased" prefHeight="41.0" prefWidth="82.0" text="Alunos" textFill="WHITE">
                                  <font>
                                     <Font name="Dubai Bold" size="22.0" />
                                  </font>
@@ -121,27 +112,27 @@
                               <Glow level="0.1" />
                            </effect>
                         </Button>
-                        <Label fx:id="matricula" layoutX="122.0" layoutY="56.0" prefHeight="32.0" prefWidth="112.0" text="&quot;matricula&quot;" textFill="WHITE">
+                        <Label fx:id="matricula" alignment="TOP_LEFT" layoutX="122.0" layoutY="56.0" prefHeight="54.0" prefWidth="112.0" text="&quot;matricula&quot;" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="Dubai Regular" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="nome" layoutX="290.0" layoutY="56.0" prefHeight="32.0" prefWidth="171.0" text="&quot;nome&quot;" textFill="WHITE">
+                        <Label fx:id="nome" alignment="TOP_LEFT" layoutX="290.0" layoutY="56.0" prefHeight="61.0" prefWidth="171.0" text="&quot;nome&quot;" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="Dubai Regular" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="email" layoutX="508.0" layoutY="56.0" prefHeight="32.0" prefWidth="196.0" text="&quot;email&quot;" textFill="WHITE">
+                        <Label fx:id="email" alignment="TOP_LEFT" layoutX="508.0" layoutY="56.0" prefHeight="61.0" prefWidth="196.0" text="&quot;email&quot;" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="Dubai Regular" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lbl_graus_academicos" alignment="TOP_LEFT" layoutX="41.0" layoutY="159.0" prefHeight="72.0" prefWidth="646.0" text="&quot;graus_academicos&quot;" textFill="WHITE">
+                        <Label fx:id="lbl_graus_academicos" alignment="TOP_LEFT" layoutX="41.0" layoutY="159.0" prefHeight="72.0" prefWidth="646.0" text="&quot;graus_academicos&quot;" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="Dubai Regular" size="18.0" />
                            </font>
                         </Label>
-                        <Label fx:id="lbl_curriculo" alignment="TOP_LEFT" layoutX="45.0" layoutY="283.0" prefHeight="78.0" prefWidth="646.0" text="&quot;curriculo&quot;" textFill="WHITE">
+                        <Label fx:id="lbl_curriculo" alignment="TOP_LEFT" layoutX="45.0" layoutY="283.0" prefHeight="78.0" prefWidth="646.0" text="&quot;curriculo&quot;" textFill="WHITE" wrapText="true">
                            <font>
                               <Font name="Dubai Regular" size="18.0" />
                            </font>
@@ -181,30 +172,20 @@
                         </Label>
                         <Pane fx:id="panelCadastroDados" focusTraversable="true" layoutX="310.0" layoutY="117.0" prefHeight="262.0" prefWidth="402.0" style="-fx-background-color: #E9F8F9; -fx-border-width: 3; -fx-border-color: gray; -fx-border-radius: 5; -fx-background-radius: 10px;" visible="false">
                            <children>
-                              <Label alignment="CENTER" layoutX="6.0" layoutY="2.0" prefHeight="32.0" prefWidth="146.0" style="&#10;" text="Graus Acadêmicos:" textAlignment="JUSTIFY" wrapText="true">
+                              <Label alignment="CENTER" layoutX="6.0" layoutY="-1.0" prefHeight="32.0" prefWidth="146.0" style="&#10;" text="Graus Acadêmicos:" textAlignment="JUSTIFY" wrapText="true">
                                  <font>
                                     <Font name="Dubai Regular" size="18.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="10.0" layoutY="125.0" prefHeight="32.0" prefWidth="71.0" style="&#10;" text="Currículo:" textAlignment="JUSTIFY" wrapText="true">
+                              <Label alignment="CENTER" layoutX="10.0" layoutY="123.0" prefHeight="32.0" prefWidth="71.0" style="&#10;" text="Currículo:" textAlignment="JUSTIFY" wrapText="true">
                                  <font>
                                     <Font name="Dubai Regular" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="graus_academicos" alignment="TOP_LEFT" layoutX="10.0" layoutY="33.0" prefHeight="96.0" prefWidth="382.0" promptText="Graus Acadêmicos:" style="-fx-background-color: #E9F8F9; -fx-background-radius: 10; -fx-border-radius: 5; -fx-border-width: 2; -fx-border-color: gray;" />
-                              <TextField fx:id="curriculo" alignment="TOP_LEFT" layoutX="10.0" layoutY="156.0" prefHeight="96.0" prefWidth="382.0" promptText="Currículo" style="-fx-background-color: #E9F8F9; -fx-background-radius: 10; -fx-border-radius: 5; -fx-border-width: 2; -fx-border-color: gray;" />
+                              <TextArea fx:id="graus_academicos" layoutX="9.0" layoutY="27.0" prefHeight="101.0" prefWidth="384.0" promptText="Graus Acadêmicos" style="-fx-background-color: #E9F8F9; -fx-background-radius: 10; -fx-border-color: gray; -fx-border-radius: 5; -fx-border-width: 2;" wrapText="true" />
+                              <TextArea fx:id="curriculo" layoutX="9.0" layoutY="152.0" prefHeight="101.0" prefWidth="384.0" promptText="Currículo" style="-fx-background-color: #E9F8F9; -fx-background-radius: 10; -fx-border-color: gray; -fx-border-radius: 5; -fx-border-width: 2;" wrapText="true" />
                            </children>
                         </Pane>
-                     </children>
-                  </Pane>
-                  <Pane fx:id="panelHorario" layoutX="205.0" layoutY="75.0" prefHeight="452.0" prefWidth="720.0" style="-fx-background-color: #191c1c; -fx-border-color: GRAY; -fx-background-radius: 5; -fx-border-radius: 5;" visible="false">
-                     <children>
-                        <TableView id="tableHorario" fx:id="tableHorario" layoutX="54.0" layoutY="63.0" onSort="#tableHorario" prefHeight="326.0" prefWidth="626.0" style="-fx-border-color: gray; -fx-border-radius: 0; -fx-border-width: 5;" />
-                        <Label layoutX="54.0" layoutY="14.0" prefHeight="41.0" prefWidth="171.0" text="Horários de Aula:" textFill="WHITE">
-                           <font>
-                              <Font name="Dubai Bold" size="22.0" />
-                           </font>
-                        </Label>
                      </children>
                   </Pane>
                   <Pane fx:id="panelDisciplina" layoutX="205.0" layoutY="75.0" prefHeight="452.0" prefWidth="720.0" style="-fx-background-color: #191c1c; -fx-border-color: GRAY; -fx-background-radius: 5; -fx-border-radius: 5;" visible="false">
@@ -228,36 +209,36 @@
                         </Button>
                         <Pane fx:id="panelCadastroDisciplina" focusTraversable="true" layoutX="32.0" layoutY="55.0" prefHeight="317.0" prefWidth="665.0" style="-fx-background-color: #E9F8F9; -fx-border-width: 3; -fx-border-color: gray; -fx-border-radius: 5; -fx-background-radius: 10px;" visible="false">
                            <children>
-                              <Label alignment="CENTER" layoutX="25.0" layoutY="22.0" prefHeight="32.0" prefWidth="118.0" style="&#10;" text="Cód. Disciplina" textAlignment="JUSTIFY" wrapText="true">
+                              <Label alignment="CENTER" layoutX="27.0" layoutY="22.0" prefHeight="32.0" prefWidth="118.0" style="&#10;" text="Cód. Disciplina:" textAlignment="JUSTIFY" wrapText="true">
                                  <font>
                                     <Font name="Dubai Regular" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="tf_cod_disciplina" alignment="TOP_LEFT" layoutX="29.0" layoutY="53.0" prefHeight="32.0" prefWidth="256.0" promptText="Cód. Disciplina" style="-fx-background-color: #E9F8F9; -fx-background-radius: 10; -fx-border-radius: 5; -fx-border-width: 2; -fx-border-color: gray;" />
+                              <TextArea fx:id="tf_cod_disciplina" layoutX="29.0" layoutY="53.0" prefHeight="61.0" prefWidth="270.0" promptText="Cód. Disciplina" style="-fx-background-color: #E9F8F9; -fx-background-radius: 10; -fx-border-color: gray; -fx-border-radius: 5; -fx-border-width: 2;" wrapText="true" />
                               <Label alignment="CENTER" layoutX="28.0" layoutY="112.0" prefHeight="32.0" prefWidth="56.0" style="&#10;" text="Nome:" textAlignment="JUSTIFY" wrapText="true">
                                  <font>
                                     <Font name="Dubai Regular" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="tf_nome" alignment="TOP_LEFT" layoutX="30.0" layoutY="143.0" prefHeight="32.0" prefWidth="256.0" promptText="Nome" style="-fx-background-color: #E9F8F9; -fx-background-radius: 10; -fx-border-radius: 5; -fx-border-width: 2; -fx-border-color: gray;" />
+                              <TextArea fx:id="tf_nome" layoutX="29.0" layoutY="143.0" prefHeight="61.0" prefWidth="270.0" promptText="Nome" style="-fx-background-color: #E9F8F9; -fx-background-radius: 10; -fx-border-color: gray; -fx-border-radius: 5; -fx-border-width: 2;" wrapText="true" />
                               <Label alignment="CENTER" layoutX="327.0" layoutY="26.0" prefHeight="32.0" prefWidth="82.0" style="&#10;" text="Descrição:" textAlignment="JUSTIFY" wrapText="true">
                                  <font>
                                     <Font name="Dubai Regular" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="tf_descricao" alignment="TOP_LEFT" layoutX="329.0" layoutY="57.0" prefHeight="96.0" prefWidth="270.0" promptText="Descrição" style="-fx-background-color: #E9F8F9; -fx-background-radius: 10; -fx-border-radius: 5; -fx-border-width: 2; -fx-border-color: gray;" />
+                              <TextArea fx:id="tf_descricao" layoutX="329.0" layoutY="56.0" prefHeight="101.0" prefWidth="270.0" promptText="Descrição" style="-fx-background-color: #E9F8F9; -fx-background-radius: 10; -fx-border-color: gray; -fx-border-radius: 5; -fx-border-width: 2;" wrapText="true" />
                               <Label alignment="CENTER" layoutX="328.0" layoutY="152.0" prefHeight="32.0" prefWidth="82.0" style="&#10;" text="Conteúdo:" textAlignment="JUSTIFY" wrapText="true">
                                  <font>
                                     <Font name="Dubai Regular" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="tf_conteudo" alignment="TOP_LEFT" layoutX="331.0" layoutY="183.0" prefHeight="96.0" prefWidth="270.0" promptText="Conteúdo" style="-fx-background-color: #E9F8F9; -fx-background-radius: 10; -fx-border-radius: 5; -fx-border-width: 2; -fx-border-color: gray;" />
+                              <TextArea fx:id="tf_conteudo" layoutX="331.0" layoutY="182.0" prefHeight="101.0" prefWidth="270.0" promptText="Conteúdo" style="-fx-background-color: #E9F8F9; -fx-background-radius: 10; -fx-border-color: gray; -fx-border-radius: 5; -fx-border-width: 2;" wrapText="true" />
                               <Label alignment="CENTER" layoutX="26.0" layoutY="207.0" prefHeight="32.0" prefWidth="118.0" style="&#10;" text="Carga Horária:" textAlignment="JUSTIFY" wrapText="true">
                                  <font>
                                     <Font name="Dubai Regular" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="tf_carga_horaria" alignment="TOP_LEFT" layoutX="30.0" layoutY="238.0" prefHeight="32.0" prefWidth="256.0" promptText="Carga Horária" style="-fx-background-color: #E9F8F9; -fx-background-radius: 10; -fx-border-radius: 5; -fx-border-width: 2; -fx-border-color: gray;" />
+                              <TextArea fx:id="tf_carga_horaria" layoutX="29.0" layoutY="238.0" prefHeight="61.0" prefWidth="270.0" promptText="Carga Horária" style="-fx-background-color: #E9F8F9; -fx-background-radius: 10; -fx-border-color: gray; -fx-border-radius: 5; -fx-border-width: 2;" wrapText="true" />
                            </children>
                         </Pane>
                         <Button fx:id="consultaDisciplina" layoutX="374.0" layoutY="388.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#consultaDisciplina" prefHeight="35.0" prefWidth="138.0" style="-fx-background-radius: 20; -fx-background-color: #3FB553;" text="CONSULTAR" textAlignment="CENTER" textFill="WHITE">
@@ -273,17 +254,17 @@
                         </Button>
                         <Pane fx:id="panelDadosDisciplina" prefHeight="452.0" prefWidth="720.0" style="-fx-background-color: #191c1c; -fx-border-color: GRAY; -fx-background-radius: 5; -fx-border-radius: 5;" visible="false">
                            <children>
-                              <Label fx:id="lbl_cod_disciplina" layoutX="128.0" layoutY="69.0" prefHeight="32.0" prefWidth="118.0" text="&quot;cod_disciplina&quot;" textFill="WHITE">
+                              <Label fx:id="lbl_cod_disciplina" alignment="TOP_LEFT" layoutX="128.0" layoutY="69.0" prefHeight="54.0" prefWidth="118.0" text="&quot;cod_disciplina&quot;" textFill="WHITE" wrapText="true">
                                  <font>
                                     <Font name="Dubai Regular" size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lbl_nomeDisciplina" layoutX="321.0" layoutY="69.0" prefHeight="32.0" prefWidth="163.0" text="&quot;nome&quot;" textFill="WHITE">
+                              <Label fx:id="lbl_nomeDisciplina" alignment="TOP_LEFT" layoutX="321.0" layoutY="69.0" prefHeight="54.0" prefWidth="163.0" text="&quot;nome&quot;" textFill="WHITE" wrapText="true">
                                  <font>
                                     <Font name="Dubai Regular" size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lbl_carga_horaria" layoutX="593.0" layoutY="69.0" prefHeight="32.0" prefWidth="118.0" text="&quot;carga_horaria&quot;" textFill="WHITE">
+                              <Label fx:id="lbl_carga_horaria" alignment="TOP_LEFT" layoutX="593.0" layoutY="69.0" prefHeight="54.0" prefWidth="118.0" text="&quot;carga_horaria&quot;" textFill="WHITE" wrapText="true">
                                  <font>
                                     <Font name="Dubai Regular" size="18.0" />
                                  </font>
@@ -309,7 +290,7 @@
                                     <Font name="Dubai Regular" size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="lbl_descricao" alignment="TOP_LEFT" layoutX="101.0" layoutY="147.0" prefHeight="96.0" prefWidth="600.0" text="&quot;descricao&quot;" textFill="WHITE">
+                              <Label fx:id="lbl_descricao" alignment="TOP_LEFT" layoutX="101.0" layoutY="147.0" prefHeight="96.0" prefWidth="600.0" text="&quot;descricao&quot;" textFill="WHITE" wrapText="true">
                                  <font>
                                     <Font name="Dubai Regular" size="18.0" />
                                  </font>
@@ -331,7 +312,7 @@
                                     <Glow level="0.1" />
                                  </effect>
                               </Button>
-                              <Label fx:id="lbl_conteudo" alignment="TOP_LEFT" layoutX="95.0" layoutY="268.0" prefHeight="115.0" prefWidth="600.0" text="&quot;conteudo&quot;" textFill="WHITE">
+                              <Label fx:id="lbl_conteudo" alignment="TOP_LEFT" layoutX="95.0" layoutY="268.0" prefHeight="115.0" prefWidth="600.0" text="&quot;conteudo&quot;" textFill="WHITE" wrapText="true">
                                  <font>
                                     <Font name="Dubai Regular" size="18.0" />
                                  </font>
@@ -370,7 +351,7 @@
                                     <Font name="Dubai Regular" size="18.0" />
                                  </font>
                               </Label>
-                              <TextField fx:id="nota" alignment="TOP_LEFT" layoutX="18.0" layoutY="132.0" prefHeight="32.0" prefWidth="154.0" promptText="Valor da Nota" style="-fx-background-color: #E9F8F9; -fx-background-radius: 10; -fx-border-radius: 5; -fx-border-width: 2; -fx-border-color: gray;" />
+                              <TextArea fx:id="nota" layoutX="18.0" layoutY="132.0" prefHeight="13.0" prefWidth="154.0" promptText="Valor da Nota" style="-fx-background-color: #E9F8F9; -fx-background-radius: 10; -fx-border-color: gray; -fx-border-radius: 5; -fx-border-width: 2;" wrapText="true" />
                               <ListView fx:id="listAlunoNotas" layoutX="196.0" layoutY="19.0" prefHeight="271.0" prefWidth="450.0" style="-fx-border-color: gray; -fx-border-width: 5;" />
                               <Button fx:id="atribuirNota" layoutX="29.0" layoutY="250.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#atribuirNota" prefHeight="35.0" prefWidth="138.0" style="-fx-background-radius: 20; -fx-background-color: #3FB553;" text="ATRIBUIR" textAlignment="CENTER" textFill="WHITE">
                                  <font>
@@ -409,17 +390,17 @@
                         </Button>
                         <Pane fx:id="panelDadosAluno" prefHeight="452.0" prefWidth="720.0" style="-fx-background-color: #191c1c; -fx-border-color: GRAY; -fx-background-radius: 5; -fx-border-radius: 5;" visible="false">
                            <children>
-                              <Label fx:id="matriculaAluno" layoutX="123.0" layoutY="66.0" prefHeight="32.0" prefWidth="112.0" text="&quot;matricula&quot;" textFill="WHITE">
+                              <Label fx:id="matriculaAluno" layoutX="123.0" layoutY="66.0" prefHeight="32.0" prefWidth="112.0" text="&quot;matricula&quot;" textFill="WHITE" wrapText="true">
                                  <font>
                                     <Font name="Dubai Regular" size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="nomeAluno" layoutX="291.0" layoutY="66.0" prefHeight="32.0" prefWidth="171.0" text="&quot;nome&quot;" textFill="WHITE">
+                              <Label fx:id="nomeAluno" alignment="TOP_LEFT" layoutX="291.0" layoutY="66.0" prefHeight="54.0" prefWidth="171.0" text="&quot;nome&quot;" textFill="WHITE" wrapText="true">
                                  <font>
                                     <Font name="Dubai Regular" size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="emailAluno" layoutX="509.0" layoutY="66.0" prefHeight="32.0" prefWidth="196.0" text="&quot;email&quot;" textFill="WHITE">
+                              <Label fx:id="emailAluno" alignment="TOP_LEFT" layoutX="509.0" layoutY="66.0" prefHeight="61.0" prefWidth="196.0" text="&quot;email&quot;" textFill="WHITE" wrapText="true">
                                  <font>
                                     <Font name="Dubai Regular" size="18.0" />
                                  </font>
@@ -445,12 +426,12 @@
                                     <Font name="Dubai Regular" size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="data_inicio" layoutX="150.0" layoutY="188.0" prefHeight="32.0" prefWidth="112.0" text="&quot;data_inicio&quot;" textFill="WHITE">
+                              <Label fx:id="data_inicio" layoutX="150.0" layoutY="188.0" prefHeight="32.0" prefWidth="138.0" text="&quot;data_inicio&quot;" textFill="WHITE" wrapText="true">
                                  <font>
                                     <Font name="Dubai Regular" size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="situacao" layoutX="406.0" layoutY="188.0" prefHeight="32.0" prefWidth="171.0" text="&quot;situacao&quot;" textFill="WHITE">
+                              <Label fx:id="situacao" layoutX="406.0" layoutY="188.0" prefHeight="32.0" prefWidth="171.0" text="&quot;situacao&quot;" textFill="WHITE" wrapText="true">
                                  <font>
                                     <Font name="Dubai Regular" size="18.0" />
                                  </font>

@@ -6,7 +6,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import br.com.schoolconnect.projeto.model.Global;
 import br.com.schoolconnect.projeto.database.DbUtils;
 import br.com.schoolconnect.projeto.model.Aluno;
@@ -19,8 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -40,13 +38,8 @@ import java.util.ArrayList;
 
 public class ControllerInterfaceProfessor {
 
-	@FXML
-	private Label lbl_curriculo;
-	
+
     @FXML
-    private Label lbl_graus_academicos;
-    
-	@FXML
     private Label alunosTela;
 
     @FXML
@@ -68,7 +61,7 @@ public class ControllerInterfaceProfessor {
     private Button consultaDisciplina;
 
     @FXML
-    private TextField curriculo;
+    private TextArea curriculo;
 
     @FXML
     private Label dadosTela;
@@ -92,10 +85,7 @@ public class ControllerInterfaceProfessor {
     private Button fechaPanelDadosDisciplina;
 
     @FXML
-    private TextField graus_academicos;
-
-    @FXML
-    private Label horarioTela;
+    private TextArea graus_academicos;
 
     @FXML
     private Label lbl_carga_horaria;
@@ -107,7 +97,13 @@ public class ControllerInterfaceProfessor {
     private Label lbl_conteudo;
 
     @FXML
+    private Label lbl_curriculo;
+
+    @FXML
     private Label lbl_descricao;
+
+    @FXML
+    private Label lbl_graus_academicos;
 
     @FXML
     private Label lbl_nomeDisciplina;
@@ -137,7 +133,7 @@ public class ControllerInterfaceProfessor {
     private Label nomeAluno;
 
     @FXML
-    private TextField nota;
+    private TextArea nota;
 
     @FXML
     private Label notasTela;
@@ -170,9 +166,6 @@ public class ControllerInterfaceProfessor {
     private Pane panelDisciplina;
 
     @FXML
-    private Pane panelHorario;
-
-    @FXML
     private Pane panelNotas;
 
     @FXML
@@ -182,26 +175,23 @@ public class ControllerInterfaceProfessor {
     private Label situacao;
 
     @FXML
-    private TableView<String> tableHorario;
+    private TextArea tf_carga_horaria;
 
     @FXML
-    private TextField tf_carga_horaria;
+    private TextArea tf_cod_disciplina;
 
     @FXML
-    private TextField tf_cod_disciplina;
+    private TextArea tf_conteudo;
 
     @FXML
-    private TextField tf_conteudo;
+    private TextArea tf_descricao;
 
     @FXML
-    private TextField tf_descricao;
-
-    @FXML
-    private TextField tf_nome;
+    private TextArea tf_nome;
 
     @FXML
     private ImageView welcome;
-    
+
 	@FXML
 	void button_sair(ActionEvent event) {
 		Stage currentStage = (Stage) sair.getScene().getWindow();
@@ -349,7 +339,6 @@ public class ControllerInterfaceProfessor {
 
 
 		panelNotas.setVisible(labelClicado == notasTela);
-		panelHorario.setVisible(labelClicado == horarioTela);
 		panelDisciplina.setVisible(labelClicado == disciplinaTela);
 
 		ObservableList<String> itemsDisciplina = FXCollections.observableArrayList(pegarDisciplinasProfessor());

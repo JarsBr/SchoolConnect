@@ -7,7 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import br.com.schoolconnect.projeto.model.Aluno;
 import br.com.schoolconnect.projeto.model.Disciplina;
 import br.com.schoolconnect.projeto.model.Global;
@@ -20,7 +19,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
@@ -39,123 +37,113 @@ import javafx.util.Duration;
 
 public class ControllerInterfaceAluno {
 
-	@FXML
-	private Label boletimTela;
+	  @FXML
+	    private Label boletimTela;
 
-	@FXML
-	private Button consultaDisciplina;
+	    @FXML
+	    private Button consultaDisciplina;
 
-	@FXML
-	private Button consultaProfessor;
+	    @FXML
+	    private Button consultaProfessor;
 
-	@FXML
-	private Label curriculo;
+	    @FXML
+	    private Label curriculo;
 
-	@FXML
-	private Label dadosTela;
+	    @FXML
+	    private Label dadosTela;
 
-	@FXML
-	private Label data_inicio;
+	    @FXML
+	    private Label data_inicio;
 
-	@FXML
-	private Label disciplinaTela;
+	    @FXML
+	    private Label disciplinaTela;
 
-	@FXML
-	private Label email;
+	    @FXML
+	    private Label email;
 
-	@FXML
-	private Label emailProfessor;
+	    @FXML
+	    private Label emailProfessor;
 
-	@FXML
-	private Button fechaPanelConsultaDisciplina;
+	    @FXML
+	    private Button fechaPanelConsultaDisciplina;
 
-	@FXML
-	private Button fechaPanelConsultaProfessores;
+	    @FXML
+	    private Button fechaPanelConsultaProfessores;
 
-	@FXML
-	private Label graus_academicos;
+	    @FXML
+	    private Label graus_academicos;
 
-	@FXML
-	private Label horarioTela;
+	    @FXML
+	    private Label lbl_carga_horaria;
 
-	@FXML
-	private Label lbl_carga_horaria;
+	    @FXML
+	    private Label lbl_cod_disciplina;
 
-	@FXML
-	private Label lbl_cod_disciplina;
+	    @FXML
+	    private Label lbl_conteudo;
 
-	@FXML
-	private Label lbl_conteudo;
+	    @FXML
+	    private Label lbl_descricao;
 
-	@FXML
-	private Label lbl_descricao;
+	    @FXML
+	    private Label lbl_nomeDisciplina;
 
-	@FXML
-	private Label lbl_nomeDisciplina;
+	    @FXML
+	    private ListView<String> listBoletim;
 
-	@FXML
-	private ListView<String> listBoletim;
+	    @FXML
+	    private ListView<String> listDisciplina;
 
-	@FXML
-	private ListView<String> listDisciplina;
+	    @FXML
+	    private ListView<String> listProfessor;
 
-	@FXML
-	private ListView<String> listProfessor;
+	    @FXML
+	    private Label matricula;
 
-	@FXML
-	private Label matricula;
+	    @FXML
+	    private Label matriculaProfessor;
 
-	@FXML
-	private Label matriculaProfessor;
+	    @FXML
+	    private Button matricularDisciplina;
 
-	@FXML
-	private Button matricularDisciplina;
+	    @FXML
+	    private Label nome;
 
-	@FXML
-	private Label nome;
+	    @FXML
+	    private Label nomeProfessor;
 
-	@FXML
-	private Label nomeProfessor;
+	    @FXML
+	    private Pane panel;
 
-	@FXML
-	private Pane panel;
+	    @FXML
+	    private Pane panelBoletim;
 
-	@FXML
-	private Pane panelBoletim;
+	    @FXML
+	    private Pane panelDados;
 
-	@FXML
-	private Pane panelDados;
+	    @FXML
+	    private Pane panelDadosDisciplina;
 
-	@FXML
-	private Pane panelDadosDisciplina;
+	    @FXML
+	    private Pane panelDadosProfessores;
 
-	@FXML
-	private Pane panelDadosProfessores;
+	    @FXML
+	    private Pane panelDisciplina;
 
-	@FXML
-	private Pane panelDisciplina;
+	    @FXML
+	    private Pane panelProfessores;
 
-	@FXML
-	private Pane panelHorario;
+	    @FXML
+	    private Label professoresTela;
 
-	@FXML
-	private Pane panelProfessores;
+	    @FXML
+	    private Button sair;
 
-	@FXML
-	private Label professoresTela;
+	    @FXML
+	    private Label situacao;
 
-	@FXML
-	private Button sair;
-
-	@FXML
-	private Label situacao;
-
-	@FXML
-	private TableView<String> tableHorario;
-
-	@FXML
-	private ImageView welcome;
-
+	    @FXML
+	    private ImageView welcome;
 
 	@FXML
 	void button_sair(ActionEvent event) {
@@ -269,7 +257,6 @@ public class ControllerInterfaceAluno {
 
 
 		panelBoletim.setVisible(labelClicado == boletimTela);
-		panelHorario.setVisible(labelClicado == horarioTela);
 		panelDisciplina.setVisible(labelClicado == disciplinaTela);
 
 		ObservableList<String> itemsDisciplina = FXCollections.observableArrayList(pegarDisciplinasAluno());
