@@ -333,7 +333,7 @@
                            </font>
                         </Label>
                         <ListView fx:id="listDisciplinaNotas" layoutX="34.0" layoutY="67.0" prefHeight="294.0" prefWidth="652.0" style="-fx-border-color: gray; -fx-border-width: 5;" />
-                        <Button fx:id="cadastroNotas" layoutX="540.0" layoutY="388.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cadastroNotas" prefHeight="35.0" prefWidth="138.0" style="-fx-background-radius: 20; -fx-background-color: #3FB553;" text="CADASTRAR" textAlignment="CENTER" textFill="WHITE">
+                        <Button fx:id="cadastroNotas" layoutX="540.0" layoutY="388.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cadastroNotas" prefHeight="35.0" prefWidth="138.0" style="-fx-background-radius: 20; -fx-background-color: #3FB553;" text="Editar Notas" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="Dubai Bold" size="13.0" />
                            </font>
@@ -353,7 +353,7 @@
                               </Label>
                               <TextArea fx:id="nota" layoutX="18.0" layoutY="132.0" prefHeight="13.0" prefWidth="154.0" promptText="Valor da Nota" style="-fx-background-color: #E9F8F9; -fx-background-radius: 10; -fx-border-color: gray; -fx-border-radius: 5; -fx-border-width: 2;" wrapText="true" />
                               <ListView fx:id="listAlunoNotas" layoutX="196.0" layoutY="19.0" prefHeight="271.0" prefWidth="450.0" style="-fx-border-color: gray; -fx-border-width: 5;" />
-                              <Button fx:id="atribuirNota" layoutX="29.0" layoutY="250.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#atribuirNota" prefHeight="35.0" prefWidth="138.0" style="-fx-background-radius: 20; -fx-background-color: #3FB553;" text="ATRIBUIR" textAlignment="CENTER" textFill="WHITE">
+                              <Button fx:id="atribuirNota" layoutX="29.0" layoutY="250.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#atribuirNota" prefHeight="35.0" prefWidth="138.0" style="-fx-background-radius: 20; -fx-background-color: #3FB553;" text="FECHAR" textAlignment="CENTER" textFill="WHITE">
                                  <font>
                                     <Font name="Dubai Bold" size="13.0" />
                                  </font>

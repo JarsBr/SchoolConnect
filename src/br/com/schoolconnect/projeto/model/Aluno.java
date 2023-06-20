@@ -49,7 +49,7 @@ public class Aluno {
 	}
 	@Override
 	public String toString() {
-		return "" + matricula + "\t" + nome + "\t" + email;
+		return "" + matricula + "\t\t" + nome + "\t\t" + email;
 	}
 	
 	

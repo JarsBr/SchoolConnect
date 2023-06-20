@@ -9,7 +9,9 @@ import java.sql.SQLException;
 import br.com.schoolconnect.projeto.model.Global;
 import br.com.schoolconnect.projeto.database.DbUtils;
 import br.com.schoolconnect.projeto.model.Aluno;
+import br.com.schoolconnect.projeto.model.AlunoNota;
 import br.com.schoolconnect.projeto.model.Disciplina;
+import br.com.schoolconnect.projeto.model.DisciplinaNota;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.Parent;
@@ -34,6 +36,8 @@ import javafx.fxml.FXML;
 import javafx.util.Callback;
 import javafx.util.Duration;
 import java.util.ArrayList;
+
+import javax.swing.JOptionPane;
 
 
 public class ControllerInterfaceProfessor {
@@ -210,10 +214,102 @@ public class ControllerInterfaceProfessor {
 	}
 
 
+
 	@FXML
 	void cadastroNotas(ActionEvent event) {
 	    panelCadastroNota.setVisible(true);
+	    ObservableList<String> itemsBoletim = FXCollections.observableArrayList(pegarDisciplinasNotas());
+
+	    // Adiciona o cabeçalho
+	    itemsBoletim.add(0, "Nota\t\tCodigo\t\t\tDisciplina");
+
+	    listAlunoNotas.setItems(itemsBoletim);
+
+	    listAlunoNotas.setOnMouseClicked(e -> {
+	        if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 1) {
+	            int selectedIndex = listAlunoNotas.getSelectionModel().getSelectedIndex();
+	            if (selectedIndex > 0) {
+	                String selectedAluno = listAlunoNotas.getItems().get(selectedIndex);
+	                System.out.println(selectedAluno); // Imprime a linha selecionada no console
+	                Global.alunoNotaSelecionado = getAlunoFromSelectedString(selectedAluno);
+	                
+	                String campoInformacao = nota.getText();
+	                if (!campoInformacao.isEmpty()) {
+	                    float notaNova = Float.parseFloat(campoInformacao);
+	                    alterarNota(selectedAluno, notaNova);
+	                }else {
+	                	JOptionPane.showMessageDialog(null, "Insira uma nota para ser atribuida");
+
+	                }
+
+	            }
+	        }
+	    });
+
+
+	    // Define a célula personalizada para exibir os itens do ListView
+	    listAlunoNotas.setCellFactory((Callback<ListView<String>, ListCell<String>>) new Callback<ListView<String>, ListCell<String>>() {
+	        @Override
+	        public ListCell<String> call(ListView<String> listView) {
+	            return new ListCell<String>() {
+	                @Override
+	                protected void updateItem(String item, boolean empty) {
+	                    super.updateItem(item, empty);
+	                    setText(item);
+	                    if (getIndex() == 0) {
+	                        setStyle("-fx-font-weight: bold"); // Estilo para o cabeçalho
+	                    }
+	                }
+	            };
+	        }
+	    });
 	}
+
+	public void alterarNota(String linhaSelecionada, float novaNota) {
+	    Connection connection = null;
+	    PreparedStatement preparedStatement = null;
+	    
+	    try {
+	        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/connectschool", "root", "");
+
+	        String query = "UPDATE aluno_has_disciplina SET nota = ? WHERE id_disciplina_ofertada = ?";
+	        preparedStatement = connection.prepareStatement(query);
+	        preparedStatement.setFloat(1, novaNota);
+	        preparedStatement.setInt(2, getIdDisciplinaOfertadaFromSelectedString(linhaSelecionada));
+
+	        int rowsAffected = preparedStatement.executeUpdate();
+	        if (rowsAffected > 0) {
+	            JOptionPane.showMessageDialog(null, "Nota alterada com sucesso!");
+	        } else {
+	            JOptionPane.showMessageDialog(null, "Falha ao alterar a nota.");
+	        }	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        if (preparedStatement != null) {
+	            try {
+	                preparedStatement.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	        if (connection != null) {
+	            try {
+	                connection.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+	}
+
+
+	public int getIdDisciplinaOfertadaFromSelectedString(String selectedString) {
+	    String[] parts = selectedString.split("\t\t"); // Divide a string com base no caractere de tabulação
+	    String idDisciplinaOfertadaString = parts[0].trim(); // Obtém a parte correspondente ao ID da disciplina ofertada
+	    return Integer.parseInt(idDisciplinaOfertadaString); // Converte para inteiro e retorna o ID
+	}
+
+
 
 	@FXML
 	void atribuirNota(ActionEvent event) {
@@ -245,13 +341,13 @@ public class ControllerInterfaceProfessor {
 			 String conteudo = tf_conteudo.getText();
 
 			 if (codDisciplina.isEmpty() || nome.isEmpty() || descricao.isEmpty() || cargaHoraria.isEmpty() || conteudo.isEmpty()) {
-			     System.out.println("Todos os campos devem ser preenchidos.");
+				 JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos.");
 			     return;
 			 }
 
 			 DbUtils.salvarDisciplina(codDisciplina, nome, descricao, cargaHoraria, conteudo);
 			 DbUtils.salvarDisciplinaOfertada("11" + codDisciplina, Global.professor.getMatricula(), codDisciplina);
-		        panelCadastroDisciplina.setVisible(false);
+			 panelCadastroDisciplina.setVisible(false);
 		    } else {
 		        panelCadastroDisciplina.setVisible(true);
 		    }
@@ -299,12 +395,10 @@ public class ControllerInterfaceProfessor {
 
 		panelAlunos.setVisible(labelClicado == alunosTela);
 		
-		
-
 		ObservableList<String> itemsAlunos = FXCollections.observableArrayList(pegarTodosAlunos());
 
 		// Adiciona o cabeçalho
-		itemsAlunos.add(0, "Matricula\tNome\tEmail");
+		itemsAlunos.add(0, "Matricula\t Nome\t\t\tEmail");
 
 		listAluno.setItems(itemsAlunos);
 		listAluno.setOnMouseClicked(e -> {
@@ -339,12 +433,39 @@ public class ControllerInterfaceProfessor {
 
 
 		panelNotas.setVisible(labelClicado == notasTela);
+		
+
+		ObservableList<String> itemsBoletim = FXCollections.observableArrayList(pegarDisciplinasNotas());
+
+		// Adiciona o cabeçalho
+		itemsBoletim.add(0, "Codigo\t\tAluno\t\t\tDisciplina\t\t\tNota");
+
+		listDisciplinaNotas.setItems(itemsBoletim);
+		
+		// Define a célula personalizada para exibir os itens do ListView
+		listDisciplinaNotas.setCellFactory((Callback<ListView<String>, ListCell<String>>) new Callback<ListView<String>, ListCell<String>>() {
+			@Override
+			public ListCell<String> call(ListView<String> listView) {
+				return new ListCell<String>() {
+					@Override
+					protected void updateItem(String item, boolean empty) {
+						super.updateItem(item, empty);
+						setText(item);
+						if (getIndex() == 0) {
+							setStyle("-fx-font-weight: bold"); // Estilo para o cabeçalho
+						}
+					}
+				};
+			}
+		});
+		
+		
 		panelDisciplina.setVisible(labelClicado == disciplinaTela);
 
 		ObservableList<String> itemsDisciplina = FXCollections.observableArrayList(pegarDisciplinasProfessor());
 
 		// Adiciona o cabeçalho
-		itemsDisciplina.add(0, "Codigo-Disciplina\tNome\tDescrição");
+		itemsDisciplina.add(0, "Codigo\t\tNome\t\t\t\tDescrição");
 
 		listDisciplina.setItems(itemsDisciplina);
 
@@ -440,6 +561,63 @@ public class ControllerInterfaceProfessor {
 		return listaAlunos;
 
 	}
+	
+	public ArrayList<String> pegarDisciplinasNotas() {
+	    Connection connection = null;
+	    PreparedStatement preparedStatement = null;
+	    ResultSet resultSet = null;
+	    ArrayList<String> listaNotas = new ArrayList<>();
+	    try {
+	        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/connectschool", "root", "");
+
+	     
+	        String query = "SELECT disciplina.cod_disciplina, disciplina.nome AS nome_disciplina, disciplina.descricao, disciplina.conteudo, disciplina.carga_horaria, aluno_has_disciplina.nota, aluno.matricula, aluno.nome AS nome_aluno, disciplina_ofertada.id_disciplina_ofertada FROM disciplina INNER JOIN disciplina_ofertada ON disciplina.cod_disciplina = disciplina_ofertada.cod_disciplina INNER JOIN aluno_has_disciplina ON disciplina_ofertada.id_disciplina_ofertada = aluno_has_disciplina.id_disciplina_ofertada INNER JOIN aluno ON aluno_has_disciplina.id_aluno = aluno.matricula WHERE disciplina_ofertada.matricula_professor = ?";
+	        preparedStatement = connection.prepareStatement(query);	  
+	        preparedStatement.setString(1, Global.professor.getMatricula());
+
+	        ResultSet disciplinaResultSet = preparedStatement.executeQuery();
+
+	        while (disciplinaResultSet.next()) {
+	            AlunoNota disciplinaNota = new AlunoNota();
+	            disciplinaNota.setCodDisciplina(disciplinaResultSet.getString("cod_disciplina"));
+	            disciplinaNota.setNomeDisciplina(disciplinaResultSet.getString("nome_disciplina"));
+	            disciplinaNota.setCodAluno(disciplinaResultSet.getString("matricula"));
+	            disciplinaNota.setNomeAluno(disciplinaResultSet.getString("nome_aluno"));
+	            disciplinaNota.setNota(disciplinaResultSet.getFloat("nota"));
+	            disciplinaNota.setCodDisciplinaOfertada(disciplinaResultSet.getString("id_disciplina_ofertada"));
+	            listaNotas.add(disciplinaNota.toString());
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        if (resultSet != null) {
+	            try {
+	                resultSet.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	        if (preparedStatement != null) {
+	            try {
+	                preparedStatement.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	        if (connection != null) {
+	            try {
+	                connection.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+
+	    return listaNotas;
+	}
+
+
+
 
 	public ArrayList<String> pegarDisciplinasProfessor() {
 		Connection connection = null;
@@ -500,7 +678,7 @@ public class ControllerInterfaceProfessor {
 	}
 	
 	private Disciplina getDisciplinaFromSelectedString(String selectedDisciplina) {
-	    String[] parts = selectedDisciplina.split("\t");
+	    String[] parts = selectedDisciplina.split("\t\t");
 	    Disciplina disciplina = new Disciplina();
 	    disciplina.setCodDisciplina(parts[0]);
 	    disciplina.setNome(parts[1]);
@@ -513,7 +691,7 @@ public class ControllerInterfaceProfessor {
 	}
 	
 	private Aluno getAlunoFromSelectedString(String selectedAluno) {
-	    String[] parts = selectedAluno.split("\t");
+	    String[] parts = selectedAluno.split("\t\t");
 	    Aluno aluno = new Aluno();
 	    aluno.setMatricula(parts[0]);
 	    aluno.setNome(parts[1]);

@@ -5,12 +5,13 @@ package br.com.schoolconnect.projeto.model;
  * mais de um turma.
  * @author Jars
  */
-public class Disciplina {
+public class DisciplinaNota {
 	private String codDisciplina;
 	private String nome;
 	private String descricao;
 	private String conteudo;
 	private String cargaHoraria;
+	private float nota;
 	
 	public String getCodDisciplina() {
 		return codDisciplina;
@@ -42,9 +43,16 @@ public class Disciplina {
 	public void setCargaHoraria(String string) {
 		this.cargaHoraria = string;
 	}
+	
+	public float getNota() {
+		return nota;
+	}
+	public void setNota(float nota) {
+		this.nota = nota;
+	}
 	@Override
 	public String toString() {
-		return "" + codDisciplina + "\t\t" + nome + "\t\t" + descricao;
+		return "  " + nota + "\t\t\t" + codDisciplina + "\t\t\t" + nome;
 	}
 	
 	
