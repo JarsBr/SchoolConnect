@@ -15,18 +15,18 @@ import javafx.stage.WindowEvent;
 public class FXML_MenuPrincipal  extends Application{
 	private static Stage stage;
 	public static Scene scene;
-	
+
 	public void start(Stage t) throws Exception  {
 		stage = new Stage();
-		
+
 		stage.setResizable(false);
 
 		Parent painel = FXMLLoader.load(getClass().getResource("MenuPrincipal.fxml"));
 		scene = new Scene(painel);
 
 		stage.setTitle("Menu");
-	    stage.getIcons().add(new Image(FXML_MenuPrincipal.class.getResourceAsStream( "img/symbolimage.png" ))); 
-	 
+		stage.getIcons().add(new Image(FXML_MenuPrincipal.class.getResourceAsStream( "img/symbolimage.png" ))); 
+
 		stage.show();
 
 		stage.setScene(scene);

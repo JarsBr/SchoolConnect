@@ -19,7 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.TextFieldListCell;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -33,90 +33,167 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.util.Callback;
 import javafx.util.Duration;
-import javafx.scene.layout.VBox;
 import java.util.ArrayList;
 
 
 public class ControllerInterfaceProfessor {
 
 	@FXML
-	private Label alunosTela;
+    private Label alunosTela;
 
-	@FXML
-	private Button cadastroDados;
+    @FXML
+    private Button atribuirNota;
 
-	@FXML
-	private Button cadastroDisciplina;
+    @FXML
+    private Button cadastroDados;
 
-	@FXML
-	private Button consultaAluno;
+    @FXML
+    private Button cadastroDisciplina;
 
-	@FXML
-	private Label curriculo;
+    @FXML
+    private Button cadastroNotas;
 
-	@FXML
-	private Label dadosTela;
+    @FXML
+    private Button consultaAluno;
 
-	@FXML
-	private Label disciplinaTela;
+    @FXML
+    private Button consultaDisciplina;
 
-	@FXML
-	private Label email;
+    @FXML
+    private TextField curriculo;
 
-	@FXML
-	private Label graus_academicos;
+    @FXML
+    private Label dadosTela;
 
-	@FXML
-	private Label horarioTela;
+    @FXML
+    private Label data_inicio;
 
-	@FXML
-	private ListView<String> listAluno;
+    @FXML
+    private Label disciplinaTela;
 
-	@FXML
-	private ListView<String> listDisciplina;
+    @FXML
+    private Label email;
 
-	@FXML
-	private Label matricula;
+    @FXML
+    private Label emailAluno;
 
-	@FXML
-	private Label nome;
+    @FXML
+    private Button fechaPanelConsultaAluno;
 
-	@FXML
-	private Label notasTela;
+    @FXML
+    private Button fechaPanelDadosDisciplina;
 
-	@FXML
-	private Pane panel;
+    @FXML
+    private TextField graus_academicos;
 
-	@FXML
-	private Pane panelAlunos;
+    @FXML
+    private Label horarioTela;
 
-	@FXML
-	private Pane panelAlunos1;
+    @FXML
+    private Label lbl_carga_horaria;
 
-	@FXML
-	private Pane panelDados;
+    @FXML
+    private Label lbl_cod_disciplina;
 
-	@FXML
-	private Pane panelDisciplina;
+    @FXML
+    private Label lbl_conteudo;
 
-	@FXML
-	private Pane panelHorario;
+    @FXML
+    private Label lbl_descricao;
 
-	@FXML
-	private Pane panelNotas;
+    @FXML
+    private Label lbl_nomeDisciplina;
 
-	@FXML
-	private Button removerDisciplina;
+    @FXML
+    private ListView<String> listAluno;
 
-	@FXML
-	private Button sair;
+    @FXML
+    private ListView<String> listAlunoNotas;
 
-	@FXML
-	private TableView<?> tableHorario;
+    @FXML
+    private ListView<String> listDisciplina;
 
-	@FXML
-	private ImageView welcome;
+    @FXML
+    private ListView<String> listDisciplinaNotas;
 
+    @FXML
+    private Label matricula;
+
+    @FXML
+    private Label matriculaAluno;
+
+    @FXML
+    private Label nome;
+
+    @FXML
+    private Label nomeAluno;
+
+    @FXML
+    private TextField nota;
+
+    @FXML
+    private Label notasTela;
+
+    @FXML
+    private Pane panel;
+
+    @FXML
+    private Pane panelAlunos;
+
+    @FXML
+    private Pane panelCadastroDados;
+
+    @FXML
+    private Pane panelCadastroDisciplina;
+
+    @FXML
+    private Pane panelCadastroNota;
+
+    @FXML
+    private Pane panelDados;
+
+    @FXML
+    private Pane panelDadosAluno;
+
+    @FXML
+    private Pane panelDadosDisciplina;
+
+    @FXML
+    private Pane panelDisciplina;
+
+    @FXML
+    private Pane panelHorario;
+
+    @FXML
+    private Pane panelNotas;
+
+    @FXML
+    private Button sair;
+
+    @FXML
+    private Label situacao;
+
+    @FXML
+    private TableView<String> tableHorario;
+
+    @FXML
+    private TextField tf_carga_horaria;
+
+    @FXML
+    private TextField tf_cod_disciplina;
+
+    @FXML
+    private TextField tf_conteudo;
+
+    @FXML
+    private TextField tf_descricao;
+
+    @FXML
+    private TextField tf_nome;
+
+    @FXML
+    private ImageView welcome;
+    
 	@FXML
 	void button_sair(ActionEvent event) {
 		Stage currentStage = (Stage) sair.getScene().getWindow();
@@ -134,26 +211,55 @@ public class ControllerInterfaceProfessor {
 		}
 	}
 
-	@FXML
-	void cadastroDados(ActionEvent event) {
 
+	@FXML
+	void cadastroNotas(ActionEvent event) {
+	    panelCadastroNota.setVisible(true);
 	}
 
 	@FXML
-	void cadastroDisciplina(ActionEvent event) {
-
+	void atribuirNota(ActionEvent event) {
+	    panelCadastroNota.setVisible(false);
 	}
 
 	@FXML
-	void removerDisciplina(ActionEvent event) {
-
+	void fechaPanelConsultaAluno(ActionEvent event) {
+	    panelDadosAluno.setVisible(false);
 	}
 
 	@FXML
 	void consultaAluno(ActionEvent event) {
-
+	    panelDadosAluno.setVisible(true);
 	}
 
+	@FXML
+	void cadastroDisciplina(ActionEvent event) {
+		 if (panelCadastroDisciplina.isVisible()) {
+		        panelCadastroDisciplina.setVisible(false);
+		    } else {
+		        panelCadastroDisciplina.setVisible(true);
+		    }
+	}
+
+	@FXML
+	void consultaDisciplina(ActionEvent event) {
+	    panelDadosDisciplina.setVisible(true);
+	}
+
+	@FXML
+	void fechaPanelDadosDisciplina(ActionEvent event) {
+	    panelDadosDisciplina.setVisible(false);
+	}
+
+	@FXML
+	void cadastroDados(ActionEvent event) {
+		 if (panelCadastroDados.isVisible()) {
+		        panelCadastroDados.setVisible(false);
+		    } else {
+		        panelCadastroDados.setVisible(true);
+		    }
+	}
+	
 	@FXML
 	void telaClicada(MouseEvent event) {
 		Label labelClicado = (Label) event.getSource();
@@ -168,10 +274,10 @@ public class ControllerInterfaceProfessor {
 
 
 		panelAlunos.setVisible(labelClicado == alunosTela);
+		
+		
 
 		ObservableList<String> itemsAlunos = FXCollections.observableArrayList(pegarTodosAlunos());
-
-
 
 		// Adiciona o cabeçalho
 		itemsAlunos.add(0, "Matricula\tNome\tEmail");
@@ -304,14 +410,14 @@ public class ControllerInterfaceProfessor {
 
 			// Percorrer os resultados do banco de dados
 			while (disciplinaResultSet.next()) {
-			    Disciplina disciplina = new Disciplina();
-			    disciplina.setCodDisciplina(disciplinaResultSet.getString("cod_disciplina"));
-			    disciplina.setNome(disciplinaResultSet.getString("nome"));
-			    disciplina.setDescricao(disciplinaResultSet.getString("descricao"));
-			    disciplina.setConteudo(disciplinaResultSet.getString("conteudo"));
+				Disciplina disciplina = new Disciplina();
+				disciplina.setCodDisciplina(disciplinaResultSet.getString("cod_disciplina"));
+				disciplina.setNome(disciplinaResultSet.getString("nome"));
+				disciplina.setDescricao(disciplinaResultSet.getString("descricao"));
+				disciplina.setConteudo(disciplinaResultSet.getString("conteudo"));
 
-			    // Adicionar o disciplina à lista
-			    listaDisciplina.add(disciplina.toString());
+				// Adicionar o disciplina à lista
+				listaDisciplina.add(disciplina.toString());
 			}
 
 

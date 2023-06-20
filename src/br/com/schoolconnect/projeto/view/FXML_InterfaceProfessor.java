@@ -11,10 +11,10 @@ import javafx.stage.WindowEvent;
 public class FXML_InterfaceProfessor extends Application {
 	private static Stage stage;
 	public static Scene scene;
-	
+
 	public void start(Stage t) throws Exception  {
 		stage = new Stage();
-		
+
 		stage.setResizable(true);
 
 		Parent painel = FXMLLoader.load(getClass().getResource("InterfaceProfessor.fxml"));
