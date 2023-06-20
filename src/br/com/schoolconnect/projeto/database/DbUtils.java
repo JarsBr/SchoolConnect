@@ -178,6 +178,156 @@ public class DbUtils {
 		}
 	}
 
+	public static void salvarDisciplina(String codDisciplina, String nome, String descricao, String cargaHoraria, String conteudo) {
+	    Connection connection = null;
+	    PreparedStatement preparedStatement = null;
+
+	    try {
+	        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/connectschool", "root", "");
+
+	        String query = "INSERT INTO disciplina (cod_disciplina, nome, descricao, carga_horaria, conteudo) VALUES (?, ?, ?, ?, ?)";
+	        preparedStatement = connection.prepareStatement(query);
+	        preparedStatement.setString(1, codDisciplina);
+	        preparedStatement.setString(2, nome);
+	        preparedStatement.setString(3, descricao);
+	        preparedStatement.setString(4, cargaHoraria);
+	        preparedStatement.setString(5, conteudo);
+	        preparedStatement.executeUpdate();
+
+	        System.out.println("Disciplina salva com sucesso!");
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        if (preparedStatement != null) {
+	            try {
+	                preparedStatement.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	        if (connection != null) {
+	            try {
+	                connection.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+	}
+	
+	public static void salvarDisciplinaOfertada(String ofertada, String professor, String disciplina) {
+	    Connection connection = null;
+	    PreparedStatement preparedStatement = null;
+
+	    try {
+	        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/connectschool", "root", "");
+
+	        String query = "INSERT INTO disciplina_ofertada (id_disciplina_ofertada, matricula_professor, cod_disciplina) VALUES (?, ?, ?)";
+	        preparedStatement = connection.prepareStatement(query);
+	        preparedStatement.setString(1, ofertada);
+	        preparedStatement.setString(2, professor);
+	        preparedStatement.setString(3, disciplina);
+	        preparedStatement.executeUpdate();
+
+	        System.out.println("Disciplina ofertada salva com sucesso!");
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        if (preparedStatement != null) {
+	            try {
+	                preparedStatement.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	        if (connection != null) {
+	            try {
+	                connection.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+	}
+
+	public static void atualizarDados(String matricula, String grausAcademicos, String curriculo) {
+	    Connection connection = null;
+	    PreparedStatement preparedStatement = null;
+	    ResultSet professorResultSet = null;
+
+	    try {
+	        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/connectschool", "root", "");
+
+	        // Atualizar os campos "graus_academicos" e "curriculo" na tabela professor
+	        String updateQuery = "UPDATE professor SET graus_academico = ?, curriculo = ? WHERE matricula = ?";
+	        preparedStatement = connection.prepareStatement(updateQuery);
+	        preparedStatement.setString(1, grausAcademicos);
+	        preparedStatement.setString(2, curriculo);
+	        preparedStatement.setString(3, matricula);
+
+	        int rowsAffected = preparedStatement.executeUpdate();
+
+	        if (rowsAffected > 0) {
+	            System.out.println("Dados atualizados com sucesso!");
+	        } else {
+	            System.out.println("Falha ao atualizar os dados.");
+	            return;
+	        }
+
+	        // Recuperar as informações atualizadas do professor do banco de dados
+	        String selectQuery = "SELECT nome, email, graus_academico, curriculo FROM professor WHERE matricula = ?";
+	        preparedStatement = connection.prepareStatement(selectQuery);
+	        preparedStatement.setString(1, matricula);
+	        professorResultSet = preparedStatement.executeQuery();
+
+	        if (professorResultSet.next()) {
+	            Professor professor = new Professor();
+	            professor.setMatricula(matricula);
+	            professor.setNome(professorResultSet.getString("nome"));
+	            professor.setEmail(professorResultSet.getString("email"));
+	            professor.setGraus(professorResultSet.getString("graus_academico"));
+	            professor.setCurriculo(professorResultSet.getString("curriculo"));
+
+	            // Atualizar as informações no objeto Global.professor
+	            professor.atualizarInformacoes(grausAcademicos, curriculo);
+
+	            // Salvar o objeto professor atualizado em uma variável Global
+	            Global.professor = professor;
+
+	            System.out.println("Informações do professor atualizadas com sucesso!");
+	        } else {
+	            System.out.println("Professor não encontrado no banco de dados.");
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        if (professorResultSet != null) {
+	            try {
+	                professorResultSet.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	        if (preparedStatement != null) {
+	            try {
+	                preparedStatement.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	        if (connection != null) {
+	            try {
+	                connection.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
+	}
+
+
 	//conecta e verifica se o usuario está presente no banco de dados
 	public static void conectarUser(ActionEvent event, String matricula, String password) {
 		Connection connection = null;

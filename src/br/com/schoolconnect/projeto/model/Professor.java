@@ -40,6 +40,10 @@ public void setCurriculo(String curriculo) {
 public String toString() {
 	return "" + matricula + "\t" + nome + "\t" + email;
 }
+public void atualizarInformacoes(String grausAcademicos, String curriculo) {
+    this.graus = grausAcademicos;
+    this.curriculo = curriculo;
+}
 
 
 }

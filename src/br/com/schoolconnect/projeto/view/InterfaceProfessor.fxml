@@ -407,7 +407,7 @@
                               <Glow level="0.1" />
                            </effect>
                         </Button>
-                        <Pane fx:id="panelDadosAluno" prefHeight="452.0" prefWidth="720.0" style="-fx-background-color: #191c1c; -fx-border-color: GRAY; -fx-background-radius: 5; -fx-border-radius: 5;">
+                        <Pane fx:id="panelDadosAluno" prefHeight="452.0" prefWidth="720.0" style="-fx-background-color: #191c1c; -fx-border-color: GRAY; -fx-background-radius: 5; -fx-border-radius: 5;" visible="false">
                            <children>
                               <Label fx:id="matriculaAluno" layoutX="123.0" layoutY="66.0" prefHeight="32.0" prefWidth="112.0" text="&quot;matricula&quot;" textFill="WHITE">
                                  <font>

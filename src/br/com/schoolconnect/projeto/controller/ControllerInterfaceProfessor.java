@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import br.com.schoolconnect.projeto.model.Global;
+import br.com.schoolconnect.projeto.database.DbUtils;
 import br.com.schoolconnect.projeto.model.Aluno;
 import br.com.schoolconnect.projeto.model.Disciplina;
 import javafx.event.ActionEvent;
@@ -21,6 +22,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -38,6 +40,12 @@ import java.util.ArrayList;
 
 public class ControllerInterfaceProfessor {
 
+	@FXML
+	private Label lbl_curriculo;
+	
+    @FXML
+    private Label lbl_graus_academicos;
+    
 	@FXML
     private Label alunosTela;
 
@@ -230,11 +238,29 @@ public class ControllerInterfaceProfessor {
 	@FXML
 	void consultaAluno(ActionEvent event) {
 	    panelDadosAluno.setVisible(true);
+	    matriculaAluno.setText(Global.alunoSelecionado.getMatricula());
+	    nomeAluno.setText(Global.alunoSelecionado.getNome());
+	    emailAluno.setText(Global.alunoSelecionado.getEmail());
+	    data_inicio.setText(Global.alunoSelecionado.getData_inicio());
+	    situacao.setText(Global.alunoSelecionado.getSituacao());
 	}
 
 	@FXML
 	void cadastroDisciplina(ActionEvent event) {
 		 if (panelCadastroDisciplina.isVisible()) {
+			 String codDisciplina = tf_cod_disciplina.getText();
+			 String nome = tf_nome.getText();
+			 String descricao = tf_descricao.getText();
+			 String cargaHoraria = tf_carga_horaria.getText();
+			 String conteudo = tf_conteudo.getText();
+
+			 if (codDisciplina.isEmpty() || nome.isEmpty() || descricao.isEmpty() || cargaHoraria.isEmpty() || conteudo.isEmpty()) {
+			     System.out.println("Todos os campos devem ser preenchidos.");
+			     return;
+			 }
+
+			 DbUtils.salvarDisciplina(codDisciplina, nome, descricao, cargaHoraria, conteudo);
+			 DbUtils.salvarDisciplinaOfertada("11" + codDisciplina, Global.professor.getMatricula(), codDisciplina);
 		        panelCadastroDisciplina.setVisible(false);
 		    } else {
 		        panelCadastroDisciplina.setVisible(true);
@@ -244,6 +270,11 @@ public class ControllerInterfaceProfessor {
 	@FXML
 	void consultaDisciplina(ActionEvent event) {
 	    panelDadosDisciplina.setVisible(true);
+	    lbl_cod_disciplina.setText(Global.disciplinaSelecionada.getCodDisciplina());
+	    lbl_nomeDisciplina.setText(Global.disciplinaSelecionada.getNome());
+	    lbl_descricao.setText(Global.disciplinaSelecionada.getDescricao());
+	    lbl_conteudo.setText(Global.disciplinaSelecionada.getConteudo());
+	    lbl_carga_horaria.setText(Global.disciplinaSelecionada.getCargaHoraria());
 	}
 
 	@FXML
@@ -254,7 +285,8 @@ public class ControllerInterfaceProfessor {
 	@FXML
 	void cadastroDados(ActionEvent event) {
 		 if (panelCadastroDados.isVisible()) {
-		        panelCadastroDados.setVisible(false);
+			 DbUtils.atualizarDados(Global.professor.getMatricula(), graus_academicos.getText(), curriculo.getText());
+			 panelCadastroDados.setVisible(false);
 		    } else {
 		        panelCadastroDados.setVisible(true);
 		    }
@@ -270,7 +302,9 @@ public class ControllerInterfaceProfessor {
 		nome.setText(Global.professor.getNome());
 		email.setText(Global.professor.getEmail());
 		graus_academicos.setText(Global.professor.getGraus());
+		lbl_graus_academicos.setText(Global.professor.getGraus());
 		curriculo.setText(Global.professor.getCurriculo());
+		lbl_curriculo.setText(Global.professor.getCurriculo());
 
 
 		panelAlunos.setVisible(labelClicado == alunosTela);
@@ -283,7 +317,19 @@ public class ControllerInterfaceProfessor {
 		itemsAlunos.add(0, "Matricula\tNome\tEmail");
 
 		listAluno.setItems(itemsAlunos);
+		listAluno.setOnMouseClicked(e -> {
+		    if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 1) {
+		        int selectedIndex = listAluno.getSelectionModel().getSelectedIndex();
+		        if (selectedIndex > 0) {
+		            String selectedAluno = listAluno.getItems().get(selectedIndex);
+		            //System.out.println(selectedAluno);
+		            Global.alunoSelecionado = getAlunoFromSelectedString(selectedAluno);
+		            //System.out.println(Global.alunoSelecionado);
 
+		            // Agora você pode salvar as informações do aluno na variável Global.alunoSelecionado
+		        }
+		    }
+		});
 		// Define a célula personalizada para exibir os itens do ListView
 		listAluno.setCellFactory((Callback<ListView<String>, ListCell<String>>) new Callback<ListView<String>, ListCell<String>>() {
 			@Override
@@ -313,6 +359,19 @@ public class ControllerInterfaceProfessor {
 
 		listDisciplina.setItems(itemsDisciplina);
 
+		listDisciplina.setOnMouseClicked(e -> {
+	        if (e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 1) {
+	            int selectedIndex = listDisciplina.getSelectionModel().getSelectedIndex();
+	            if (selectedIndex > 0) {
+	                String selectedDisciplina = listDisciplina.getItems().get(selectedIndex);
+	                //System.out.println(selectedDisciplina);
+	                Global.disciplinaSelecionada = getDisciplinaFromSelectedString(selectedDisciplina);
+	                //System.out.println(Global.disciplinaSelecionada);
+
+	                // Agora você pode salvar as informações da disciplina na variável Global.disciplinaSelecionada
+	            }
+	        }
+	    });
 		// Define a célula personalizada para exibir os itens do ListView
 		listDisciplina.setCellFactory((Callback<ListView<String>, ListCell<String>>) new Callback<ListView<String>, ListCell<String>>() {
 			@Override
@@ -329,7 +388,7 @@ public class ControllerInterfaceProfessor {
 				};
 			}
 		});
-
+		
 
 	}
 
@@ -450,6 +509,139 @@ public class ControllerInterfaceProfessor {
 		return listaDisciplina;
 
 	}
+	
+	private Disciplina getDisciplinaFromSelectedString(String selectedDisciplina) {
+	    String[] parts = selectedDisciplina.split("\t");
+	    Disciplina disciplina = new Disciplina();
+	    disciplina.setCodDisciplina(parts[0]);
+	    disciplina.setNome(parts[1]);
+	    disciplina.setDescricao(parts[2]);
+	    disciplina.setConteudo(obterConteudoDisciplina(parts[0]));
+	    disciplina.setCargaHoraria(obterCargaDisciplina(parts[0]));
+	    // Preencha os outros atributos da disciplina se necessário
+
+	    return disciplina;
+	}
+	
+	private Aluno getAlunoFromSelectedString(String selectedAluno) {
+	    String[] parts = selectedAluno.split("\t");
+	    Aluno aluno = new Aluno();
+	    aluno.setMatricula(parts[0]);
+	    aluno.setNome(parts[1]);
+	    aluno.setEmail(parts[2]);
+	    aluno.setData_inicio(obterDataInicioAluno(parts[0]));
+	    aluno.setSituacao(obterSituacaoAluno(parts[0]));
+	    // Preencha os outros atributos do aluno se necessário
+
+	    return aluno;
+	}
+
+	public String obterDataInicioAluno(String matriculaAluno) {
+	    Connection connection = null;
+	    PreparedStatement preparedStatement = null;
+	    ResultSet resultSet = null;
+	    String data = "";
+
+	    try {
+	        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/connectschool", "root", "");
+
+	        String query = "SELECT data_inicio FROM aluno WHERE matricula = ?";
+	        preparedStatement = connection.prepareStatement(query);
+	        preparedStatement.setString(1, matriculaAluno);
+	        resultSet = preparedStatement.executeQuery();
+
+	        if (resultSet.next()) {
+	        	data = resultSet.getString("data_inicio");
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        // Feche as conexões, declarações e resultados aqui
+	    }
+
+	    return data;
+	}
+	
+	public String obterSituacaoAluno(String matriculaAluno) {
+	    Connection connection = null;
+	    PreparedStatement preparedStatement = null;
+	    ResultSet resultSet = null;
+	    String situacao = "";
+
+	    try {
+	        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/connectschool", "root", "");
+
+	        String query = "SELECT situacao FROM aluno WHERE matricula = ?";
+	        preparedStatement = connection.prepareStatement(query);
+	        preparedStatement.setString(1, matriculaAluno);
+	        resultSet = preparedStatement.executeQuery();
+
+	        if (resultSet.next()) {
+	        	situacao = resultSet.getString("situacao");
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        // Feche as conexões, declarações e resultados aqui
+	    }
+
+	    return situacao;
+	}
+	public String obterConteudoDisciplina(String codDisciplina) {
+	    Connection connection = null;
+	    PreparedStatement preparedStatement = null;
+	    ResultSet resultSet = null;
+	    String conteudo = "";
+
+	    try {
+	        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/connectschool", "root", "");
+
+	        String query = "SELECT conteudo FROM disciplina WHERE cod_disciplina = ?";
+	        preparedStatement = connection.prepareStatement(query);
+	        preparedStatement.setString(1, codDisciplina);
+	        resultSet = preparedStatement.executeQuery();
+
+	        if (resultSet.next()) {
+	            conteudo = resultSet.getString("conteudo");
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        // Feche as conexões, declarações e resultados aqui
+	    }
+
+	    return conteudo;
+	}
+	public String obterCargaDisciplina(String codDisciplina) {
+	    Connection connection = null;
+	    PreparedStatement preparedStatement = null;
+	    ResultSet resultSet = null;
+	    String cargaHoraria = "";
+
+	    try {
+	        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/connectschool", "root", "");
+
+	        String query = "SELECT carga_horaria FROM disciplina WHERE cod_disciplina = ?";
+	        preparedStatement = connection.prepareStatement(query);
+	        preparedStatement.setString(1, codDisciplina);
+	        resultSet = preparedStatement.executeQuery();
+
+	        if (resultSet.next()) {
+	        	cargaHoraria = resultSet.getString("carga_horaria");
+	        }
+
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        // Feche as conexões, declarações e resultados aqui
+	    }
+
+	    return cargaHoraria;
+	}
+	
 	@FXML
 	void tableHorario(ActionEvent event) {
 

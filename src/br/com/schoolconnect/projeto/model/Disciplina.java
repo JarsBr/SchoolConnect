@@ -10,7 +10,7 @@ public class Disciplina {
 	private String nome;
 	private String descricao;
 	private String conteudo;
-	private int cargaHoraria;
+	private String cargaHoraria;
 	
 	public String getCodDisciplina() {
 		return codDisciplina;
@@ -36,11 +36,11 @@ public class Disciplina {
 	public void setConteudo(String conteudo) {
 		this.conteudo = conteudo;
 	}
-	public int getCargaHoraria() {
+	public String getCargaHoraria() {
 		return cargaHoraria;
 	}
-	public void setCargaHoraria(int cargaHoraria) {
-		this.cargaHoraria = cargaHoraria;
+	public void setCargaHoraria(String string) {
+		this.cargaHoraria = string;
 	}
 	@Override
 	public String toString() {
