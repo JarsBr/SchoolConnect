@@ -32,6 +32,11 @@ import javafx.util.Duration;
 
 import javax.swing.JOptionPane;
 
+/*
+ * 
+ *  Controller da Interface Professor
+ * 
+ */
 
 public class ControllerInterfaceProfessor {
 

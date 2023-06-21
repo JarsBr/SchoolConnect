@@ -17,7 +17,7 @@ import br.com.schoolconnect.projeto.model.Global;
 public class DisplinaDAO {
 	/*
 	 * 
-	 *  Metodos Aluno
+	 *  Métodos de Disciplina
 	 * 
 	 */
 	public static Disciplina getDisciplinaFromSelectedStringAluno(String selectedDisciplina) {

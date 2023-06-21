@@ -28,6 +28,11 @@ import javafx.fxml.FXML;
 import javafx.util.Callback;
 import javafx.util.Duration;
 
+/*
+ * 
+ *  Controller da Interface Aluno
+ * 
+ */
 
 public class ControllerInterfaceAluno {
 

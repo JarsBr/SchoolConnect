@@ -1,5 +1,9 @@
 package br.com.schoolconnect.projeto.model;
 
+/**
+ * Classe que representa um aluno.
+ */
+
 public class Aluno {
 
 	private String matricula;
@@ -9,7 +13,7 @@ public class Aluno {
 	private String data_inicio;
 	private String situacao;
 
-	
+	// métodos getters e setters
 	public String getMatricula() {
 		return matricula;
 	}

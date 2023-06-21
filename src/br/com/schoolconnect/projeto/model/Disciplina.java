@@ -1,9 +1,7 @@
 package br.com.schoolconnect.projeto.model;
 
 /**
- * Classe que cria uma disciplina para ser cadastrada em uma turma, ate o momento nao e possivel ter a mesma disciplina em 
- * mais de um turma.
- * @author Jars
+ * Classe que representa uma disciplina.
  */
 public class Disciplina {
 	private String codDisciplina;
@@ -12,6 +10,7 @@ public class Disciplina {
 	private String conteudo;
 	private String cargaHoraria;
 	
+	// métodos getters e setters
 	public String getCodDisciplina() {
 		return codDisciplina;
 	}

@@ -1,10 +1,9 @@
 package br.com.schoolconnect.projeto.model;
 
 /**
- * Classe que cria uma disciplina para ser cadastrada em uma turma, ate o momento nao e possivel ter a mesma disciplina em 
- * mais de um turma.
- * @author Jars
+ * Classe que representa uma disciplina a cadastrar nota.
  */
+
 public class DisciplinaNota {
 	private String codDisciplina;
 	private String nome;
@@ -13,6 +12,7 @@ public class DisciplinaNota {
 	private String cargaHoraria;
 	private float nota;
 	
+	// métodos getters e setters
 	public String getCodDisciplina() {
 		return codDisciplina;
 	}

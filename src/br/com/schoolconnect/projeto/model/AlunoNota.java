@@ -1,5 +1,9 @@
 package br.com.schoolconnect.projeto.model;
 
+/**
+ * Classe que representa as notas de um aluno em uma disciplina específica.
+ */
+
 public class AlunoNota {
 
 	
@@ -10,7 +14,7 @@ public class AlunoNota {
 	private String codDisciplinaOfertada;
 	private float nota;
 	
-	
+	// métodos getters e setters
 	public String getCodDisciplinaOfertada() {
 		return codDisciplinaOfertada;
 	}

@@ -12,7 +12,7 @@ import br.com.schoolconnect.projeto.model.Professor;
 public class ProfessorDAO {
 	/*
 	 * 
-	 *  Metodos Aluno
+	 *  Métodos de Professor
 	 * 
 	 */
 	
