@@ -1,6 +1,8 @@
 package br.com.schoolconnect.projeto.model;
 
-
+/*
+ * Classes com variaveis globais
+ */
 
 public class Global {
 
@@ -15,7 +17,5 @@ public static String idDisciplinaSelecionada;
 public static String nomeDisciplinaSelecionada;
 public static String conteudoDisciplinaSelecionada;
 public static String descricaoDisciplinaSelecionada;
-
-
 
 }

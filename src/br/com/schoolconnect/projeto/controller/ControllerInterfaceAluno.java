@@ -1,19 +1,10 @@
 package br.com.schoolconnect.projeto.controller;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-
+import br.com.schoolconnect.projeto.dao.DisplinaDAO;
+import br.com.schoolconnect.projeto.dao.ProfessorDAO;
 import br.com.schoolconnect.projeto.database.DbUtils;
-import br.com.schoolconnect.projeto.model.Aluno;
-import br.com.schoolconnect.projeto.model.Disciplina;
-import br.com.schoolconnect.projeto.model.DisciplinaNota;
 import br.com.schoolconnect.projeto.model.Global;
-import br.com.schoolconnect.projeto.model.Professor;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.scene.Parent;
@@ -196,7 +187,6 @@ public class ControllerInterfaceAluno {
 	    curriculo.setText(Global.professorSelecionado.getCurriculo());
 	}
 
-	// falta método
 	@FXML
 	void matricularDisciplina(ActionEvent event) {
 		DbUtils.atualizarDisiciplinaAluno(Global.aluno.getMatricula(), Global.disciplinaSelecionada.getCodDisciplina(), "Teste", 0);
@@ -222,7 +212,7 @@ public class ControllerInterfaceAluno {
 
 		panelProfessores.setVisible(labelClicado == professoresTela);
 
-		ObservableList<String> items = FXCollections.observableArrayList(pegarTodosProfessores());
+		ObservableList<String> items = FXCollections.observableArrayList(ProfessorDAO.pegarTodosProfessores());
 
 		// Adiciona o cabeçalho
 		items.add(0, "Matricula\tNome\t\t\tEmail");
@@ -234,7 +224,7 @@ public class ControllerInterfaceAluno {
 		        if (selectedIndex > 0) {
 		            String selectedProf = listProfessor.getItems().get(selectedIndex);
 		            //System.out.println(selectedProf);
-		            Global.professorSelecionado = getProfessorFromSelectedString(selectedProf);
+		            Global.professorSelecionado = ProfessorDAO.getProfessorFromSelectedString(selectedProf);
 		            //System.out.println(Global.professorSelecionado);
 
 		            // Agora você pode salvar as informações do aluno na variável Global.alunoSelecionado
@@ -261,7 +251,7 @@ public class ControllerInterfaceAluno {
 
 		panelBoletim.setVisible(labelClicado == boletimTela);
 		
-		ObservableList<String> itemsBoletim = FXCollections.observableArrayList(pegarNotasAluno());
+		ObservableList<String> itemsBoletim = FXCollections.observableArrayList(DisplinaDAO.pegarNotasAluno());
 
 		// Adiciona o cabeçalho
 		itemsBoletim.add(0, "Nota\t\tCodigo\t\t\tDisciplina");
@@ -285,10 +275,9 @@ public class ControllerInterfaceAluno {
 			}
 		});
 		
-		
 		panelDisciplina.setVisible(labelClicado == disciplinaTela);
 
-		ObservableList<String> itemsDisciplina = FXCollections.observableArrayList(pegarDisciplinasAluno());
+		ObservableList<String> itemsDisciplina = FXCollections.observableArrayList(DisplinaDAO.pegarDisciplinasAluno());
 
 		// Adiciona o cabeçalho
 		itemsDisciplina.add(0, "Codigo\t\tNome\t\tDescrição");
@@ -300,7 +289,7 @@ public class ControllerInterfaceAluno {
 	            if (selectedIndex > 0) {
 	                String selectedDisciplina = listDisciplina.getItems().get(selectedIndex);
 	                //System.out.println(selectedDisciplina);
-	                Global.disciplinaSelecionada = getDisciplinaFromSelectedString(selectedDisciplina);
+	                Global.disciplinaSelecionada = DisplinaDAO.getDisciplinaFromSelectedStringAluno(selectedDisciplina);
 	                //System.out.println(Global.disciplinaSelecionada);
 
 	                // Agora você pode salvar as informações da disciplina na variável Global.disciplinaSelecionada
@@ -324,313 +313,6 @@ public class ControllerInterfaceAluno {
 			}
 		});
 	}
-	
-	private Professor getProfessorFromSelectedString(String selectedAluno) {
-	    String[] parts = selectedAluno.split("\t");
-	    Professor professor = new Professor();
-	    professor.setMatricula(parts[0]);
-	    professor.setNome(parts[1]);
-	    professor.setEmail(parts[2]);
-	    professor.setGraus(obterGrausProfessor(parts[0]));
-	    professor.setCurriculo(obterCurriculoProfessor(parts[0]));
-	    // Preencha os outros atributos do aluno se necessário
-
-	    return professor;
-	}
-	public String obterGrausProfessor(String matriculaProf) {
-	    Connection connection = null;
-	    PreparedStatement preparedStatement = null;
-	    ResultSet resultSet = null;
-	    String graus = "";
-
-	    try {
-	        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/connectschool", "root", "");
-
-	        String query = "SELECT graus_academico FROM professor WHERE matricula = ?";
-	        preparedStatement = connection.prepareStatement(query);
-	        preparedStatement.setString(1, matriculaProf);
-	        resultSet = preparedStatement.executeQuery();
-
-	        if (resultSet.next()) {
-	        	graus = resultSet.getString("graus_academico");
-	        }
-
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    } finally {
-	        // Feche as conexões, declarações e resultados aqui
-	    }
-
-	    return graus;
-	}
-	
-	public String obterCurriculoProfessor(String matriculaProf) {
-	    Connection connection = null;
-	    PreparedStatement preparedStatement = null;
-	    ResultSet resultSet = null;
-	    String curriculo = "";
-
-	    try {
-	        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/connectschool", "root", "");
-
-	        String query = "SELECT curriculo FROM professor WHERE matricula = ?";
-	        preparedStatement = connection.prepareStatement(query);
-	        preparedStatement.setString(1, matriculaProf);
-	        resultSet = preparedStatement.executeQuery();
-
-	        if (resultSet.next()) {
-	        	curriculo = resultSet.getString("curriculo");
-	        }
-
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    } finally {
-	        // Feche as conexões, declarações e resultados aqui
-	    }
-
-	    return curriculo;
-	}
-
-	public ArrayList<String> pegarTodosProfessores() {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-		// Criar uma ArrayList para armazenar os alunos
-		ArrayList<String> listaProfessores = new ArrayList<>();
-		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/connectschool", "root", "");
-
-			// Aqui fiz uma subquery para funcionar a verificação da tabela aluno e professor ao mesmo tempo
-
-
-
-
-			// Recuperar as informações dos alunos do banco de dados
-			String query = "SELECT matricula, nome, email, graus_academico, curriculo FROM professor";
-			preparedStatement = connection.prepareStatement(query);
-			ResultSet professorResultSet = preparedStatement.executeQuery();
-
-			// Percorrer os resultados do banco de dados
-			while (professorResultSet.next()) {
-				Professor professor = new Professor();
-				professor.setMatricula(professorResultSet.getString("matricula"));
-				professor.setNome(professorResultSet.getString("nome"));
-				professor.setEmail(professorResultSet.getString("email"));
-				professor.setGraus(professorResultSet.getString("graus_academico"));
-				professor.setCurriculo(professorResultSet.getString("curriculo"));
-
-				// Adicionar o aluno à lista
-				listaProfessores.add(professor.toString());
-			}
-
-			// Agora, a listaAlunos contém todos os alunos do banco de dados
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if (resultSet != null) {
-				try {
-					resultSet.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (preparedStatement != null) {
-				try {
-					preparedStatement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (connection != null) {
-				try {
-					connection.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return listaProfessores;
-
-	}
-
-	
-	private Disciplina getDisciplinaFromSelectedString(String selectedDisciplina) {
-	    String[] parts = selectedDisciplina.split("\t");
-	    Disciplina disciplina = new Disciplina();
-	    disciplina.setCodDisciplina(parts[0]);
-	    disciplina.setNome(parts[1]);
-	    disciplina.setDescricao(parts[2]);
-	    disciplina.setConteudo(obterConteudoDisciplina(parts[0]));
-	    disciplina.setCargaHoraria(obterCargaDisciplina(parts[0]));
-	    // Preencha os outros atributos da disciplina se necessário
-
-	    return disciplina;
-	}
-	public String obterConteudoDisciplina(String codDisciplina) {
-	    Connection connection = null;
-	    PreparedStatement preparedStatement = null;
-	    ResultSet resultSet = null;
-	    String conteudo = "";
-
-	    try {
-	        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/connectschool", "root", "");
-
-	        String query = "SELECT conteudo FROM disciplina WHERE cod_disciplina = ?";
-	        preparedStatement = connection.prepareStatement(query);
-	        preparedStatement.setString(1, codDisciplina);
-	        resultSet = preparedStatement.executeQuery();
-
-	        if (resultSet.next()) {
-	            conteudo = resultSet.getString("conteudo");
-	        }
-
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    } finally {
-	        // Feche as conexões, declarações e resultados aqui
-	    }
-
-	    return conteudo;
-	}
-	public String obterCargaDisciplina(String codDisciplina) {
-	    Connection connection = null;
-	    PreparedStatement preparedStatement = null;
-	    ResultSet resultSet = null;
-	    String cargaHoraria = "";
-
-	    try {
-	        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/connectschool", "root", "");
-
-	        String query = "SELECT carga_horaria FROM disciplina WHERE cod_disciplina = ?";
-	        preparedStatement = connection.prepareStatement(query);
-	        preparedStatement.setString(1, codDisciplina);
-	        resultSet = preparedStatement.executeQuery();
-
-	        if (resultSet.next()) {
-	        	cargaHoraria = resultSet.getString("carga_horaria");
-	        }
-
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    } finally {
-	        // Feche as conexões, declarações e resultados aqui
-	    }
-
-	    return cargaHoraria;
-	}
-	public ArrayList<String> pegarDisciplinasAluno() {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-		// Criar uma ArrayList para armazenar os alunos
-		ArrayList<String> listaDisciplina = new ArrayList<>();
-		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/connectschool", "root", "");
-
-
-			String query = "SELECT cod_disciplina, nome, descricao, conteudo, carga_horaria FROM disciplina WHERE cod_disciplina IN (SELECT cod_disciplina FROM disciplina_ofertada)"; 
-			preparedStatement = connection.prepareStatement(query);
-			
-			ResultSet disciplinaResultSet = preparedStatement.executeQuery();
-
-
-			// Percorrer os resultados do banco de dados
-			while (disciplinaResultSet.next()) {
-				Disciplina disciplina = new Disciplina();
-				disciplina.setCodDisciplina(disciplinaResultSet.getString("cod_disciplina"));
-				disciplina.setNome(disciplinaResultSet.getString("nome"));
-				disciplina.setDescricao(disciplinaResultSet.getString("descricao"));
-				disciplina.setConteudo(disciplinaResultSet.getString("conteudo"));
-
-				// Adicionar o disciplina à lista
-				listaDisciplina.add(disciplina.toString());
-			}
-
-
-			// Agora, a listaAlunos contém todos os alunos do banco de dados
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if (resultSet != null) {
-				try {
-					resultSet.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (preparedStatement != null) {
-				try {
-					preparedStatement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (connection != null) {
-				try {
-					connection.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return listaDisciplina;
-
-	}
-	
-	public ArrayList<String> pegarNotasAluno() {
-	    Connection connection = null;
-	    PreparedStatement preparedStatement = null;
-	    ResultSet resultSet = null;
-	    ArrayList<String> listaNotas = new ArrayList<>();
-	    try {
-	        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/connectschool", "root", "");
-
-	        String query = "SELECT disciplina.cod_disciplina, disciplina.nome, disciplina.descricao, disciplina.conteudo, disciplina.carga_horaria, aluno_has_disciplina.nota FROM disciplina INNER JOIN disciplina_ofertada ON disciplina.cod_disciplina = disciplina_ofertada.cod_disciplina INNER JOIN aluno_has_disciplina ON disciplina_ofertada.id_disciplina_ofertada = aluno_has_disciplina.id_disciplina_ofertada WHERE aluno_has_disciplina.id_aluno = ?";
-	        preparedStatement = connection.prepareStatement(query);
-	        preparedStatement.setString(1, Global.aluno.getMatricula());
-
-	        ResultSet disciplinaResultSet = preparedStatement.executeQuery();
-
-	        while (disciplinaResultSet.next()) {
-	            DisciplinaNota disciplinaNota = new DisciplinaNota();
-	            disciplinaNota.setCodDisciplina(disciplinaResultSet.getString("cod_disciplina"));
-	            disciplinaNota.setNome(disciplinaResultSet.getString("nome"));
-	            disciplinaNota.setDescricao(disciplinaResultSet.getString("descricao"));
-	            disciplinaNota.setConteudo(disciplinaResultSet.getString("conteudo"));
-	            disciplinaNota.setCargaHoraria(disciplinaResultSet.getString("carga_horaria"));
-	            disciplinaNota.setNota(disciplinaResultSet.getFloat("nota"));
-	            listaNotas.add(disciplinaNota.toString());
-	        }
-	    } catch (SQLException e) {
-	        e.printStackTrace();
-	    } finally {
-	        if (resultSet != null) {
-	            try {
-	                resultSet.close();
-	            } catch (SQLException e) {
-	                e.printStackTrace();
-	            }
-	        }
-	        if (preparedStatement != null) {
-	            try {
-	                preparedStatement.close();
-	            } catch (SQLException e) {
-	                e.printStackTrace();
-	            }
-	        }
-	        if (connection != null) {
-	            try {
-	                connection.close();
-	            } catch (SQLException e) {
-	                e.printStackTrace();
-	            }
-	        }
-	    }
-	    
-	    return listaNotas;
-	}
-
-
 
 	// animações bacanas
 
