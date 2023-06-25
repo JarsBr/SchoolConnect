@@ -141,63 +141,58 @@ public class DisplinaDAO {
 	}
 	
 	public static ArrayList<String> pegarDisciplinasAluno() {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-		// Criar uma ArrayList para armazenar os alunos
-		ArrayList<String> listaDisciplina = new ArrayList<>();
-		try {
-			connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/connectschool", "root", "");
+	    Connection connection = null;
+	    PreparedStatement preparedStatement = null;
+	    ResultSet resultSet = null;
+	    ArrayList<String> listaDisciplina = new ArrayList<>();
 
+	    try {
+	        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/connectschool", "root", "");
 
-			String query = "SELECT cod_disciplina, nome, descricao, conteudo, carga_horaria FROM disciplina WHERE cod_disciplina IN (SELECT cod_disciplina FROM disciplina_ofertada)"; 
-			preparedStatement = connection.prepareStatement(query);
-			
-			ResultSet disciplinaResultSet = preparedStatement.executeQuery();
+	        String query = "SELECT disciplina.cod_disciplina, disciplina.nome, disciplina.descricao, disciplina.conteudo, disciplina.carga_horaria FROM disciplina INNER JOIN disciplina_ofertada ON disciplina.cod_disciplina = disciplina_ofertada.cod_disciplina LEFT JOIN aluno_has_disciplina ON disciplina_ofertada.id_disciplina_ofertada = aluno_has_disciplina.id_disciplina_ofertada AND aluno_has_disciplina.id_aluno = ? WHERE aluno_has_disciplina.id_aluno IS NULL";
+	        preparedStatement = connection.prepareStatement(query);
+	        preparedStatement.setString(1, Global.aluno.getMatricula());
 
+	        ResultSet disciplinaResultSet = preparedStatement.executeQuery();
 
-			// Percorrer os resultados do banco de dados
-			while (disciplinaResultSet.next()) {
-				Disciplina disciplina = new Disciplina();
-				disciplina.setCodDisciplina(disciplinaResultSet.getString("cod_disciplina"));
-				disciplina.setNome(disciplinaResultSet.getString("nome"));
-				disciplina.setDescricao(disciplinaResultSet.getString("descricao"));
-				disciplina.setConteudo(disciplinaResultSet.getString("conteudo"));
+	        while (disciplinaResultSet.next()) {
+	            Disciplina disciplina = new Disciplina();
+	            disciplina.setCodDisciplina(disciplinaResultSet.getString("cod_disciplina"));
+	            disciplina.setNome(disciplinaResultSet.getString("nome"));
+	            disciplina.setDescricao(disciplinaResultSet.getString("descricao"));
+	            disciplina.setConteudo(disciplinaResultSet.getString("conteudo"));
+	            disciplina.setCargaHoraria(disciplinaResultSet.getString("carga_horaria"));
+	            listaDisciplina.add(disciplina.toString());
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        if (resultSet != null) {
+	            try {
+	                resultSet.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	        if (preparedStatement != null) {
+	            try {
+	                preparedStatement.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	        if (connection != null) {
+	            try {
+	                connection.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	    }
 
-				// Adicionar o disciplina à lista
-				listaDisciplina.add(disciplina.toString());
-			}
-
-
-			// Agora, a listaAlunos contém todos os alunos do banco de dados
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			if (resultSet != null) {
-				try {
-					resultSet.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (preparedStatement != null) {
-				try {
-					preparedStatement.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			if (connection != null) {
-				try {
-					connection.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-		return listaDisciplina;
-
+	    return listaDisciplina;
 	}
+
 	
 	
 	

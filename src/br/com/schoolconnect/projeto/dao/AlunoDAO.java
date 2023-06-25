@@ -98,7 +98,27 @@ public class AlunoDAO {
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    } finally {
-	        // Feche as conexões, declarações e resultados aqui
+	    	if (resultSet != null) {
+				try {
+					resultSet.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (preparedStatement != null) {
+				try {
+					preparedStatement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 	    }
 
 	    return data;
@@ -138,7 +158,27 @@ public class AlunoDAO {
 	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    } finally {
-	        // Feche as conexões, declarações e resultados aqui
+	    	if (resultSet != null) {
+				try {
+					resultSet.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (preparedStatement != null) {
+				try {
+					preparedStatement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 	    }
 
 	    return situacao;
